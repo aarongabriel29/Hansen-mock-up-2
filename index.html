@@ -1,6 +1,6 @@
 <!DOCTYPE html><html class="scroll-smooth" lang="en" style=""><head>
 <meta charset="utf-8">
-<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport">
 <title>Hansen Waterscapes Inc. | Premier Custom Pools &amp; Spas Ventura County</title>
 <link href="https://fonts.googleapis.com" rel="preconnect">
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
@@ -13,6 +13,7 @@
       theme: {
         extend: {
           screens: {
+            "xs": "420px",
             "3xl": "1700px"
           },
           maxWidth: {
@@ -60,154 +61,193 @@
       -ms-overflow-style: none;
       scrollbar-width: none;
     }
+
+    /* Prevent any single wide element from creating sideways scroll on phones */
+    html, body { overflow-x: hidden; max-width: 100%; }
+
+    /* Anchor targets clear the sticky header */
+    section[id] { scroll-margin-top: 84px; }
+    @media (min-width: 768px) { section[id] { scroll-margin-top: 112px; } }
+
+    /* Keep the sticky mobile bar above the iOS home indicator */
+    .safe-bottom { padding-bottom: calc(0.625rem + env(safe-area-inset-bottom)); }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    }
   </style>
 </head>
-<body class="bg-white text-slate-ink antialiased selection:bg-accent selection:text-white">
+<body class="bg-white text-slate-ink antialiased selection:bg-accent selection:text-white pb-[72px] lg:pb-0">
 <!-- Top Quality Bar -->
-<div class="w-full bg-navy-dark text-white/90 text-xs font-medium py-2 px-4 text-center tracking-wide border-b border-white/10">
+<div class="w-full bg-navy-dark text-white/90 text-[11px] sm:text-xs font-medium py-2 px-4 text-center tracking-wide border-b border-white/10">
 <div class="max-w-7xl mx-auto flex items-center justify-center gap-2">
-<span class="inline-block w-2 h-2 rounded-full bg-accent-vivid animate-pulse"></span>
-<span class="">Turnkey 4,500 PSI shotcrete swimming pools &amp; custom hydrotherapy spas built across Ventura County &amp; surrounding communities.</span>
+<span class="inline-block w-2 h-2 rounded-full bg-accent-vivid animate-pulse shrink-0"></span>
+<span class="sm:hidden">Turnkey 4,500 PSI pools &amp; custom spas across Ventura County.</span>
+<span class="hidden sm:inline">Turnkey 4,500 PSI shotcrete swimming pools &amp; custom hydrotherapy spas built across Ventura County &amp; surrounding communities.</span>
 </div>
 </div>
 <!-- Header Navigation -->
 <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200 shadow-xs transition-all">
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 2xl:px-10 3xl:px-12 py-2 sm:py-3 3xl:py-4 flex items-center justify-between">
-<!-- Brand Logo & License Badge -->
-<a class="flex items-center gap-3.5 group focus:outline-none py-1" href="#">
-<img alt="Hansen Waterscapes Inc. Pools &amp; Spas" class="h-16 md:h-20 3xl:h-24 max-h-20 3xl:max-h-24 w-auto object-contain transition-transform group-hover:scale-105" src="https://aarongabriel29.github.io/Hansen-mock-up/images/images/12948412_logo.webp">
-<div class="hidden sm:flex flex-col border-l border-gray-200 pl-3.5">
-</div>
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 2xl:px-10 3xl:px-12 py-2 sm:py-3 3xl:py-4 flex items-center justify-between gap-3">
+<!-- Brand Logo -->
+<a class="flex items-center gap-3.5 group focus:outline-none py-1 shrink-0" href="#">
+<img alt="Hansen Waterscapes Inc. Pools &amp; Spas" class="h-11 sm:h-16 md:h-20 3xl:h-24 max-h-20 3xl:max-h-24 w-auto object-contain transition-transform group-hover:scale-105" src="https://aarongabriel29.github.io/Hansen-mock-up/images/images/12948412_logo.webp">
 </a>
 <!-- Desktop Nav Links -->
-<nav class="hidden md:flex items-center gap-8 3xl:gap-12 font-medium text-[15px] 3xl:text-base text-gray-700">
+<nav class="hidden lg:flex items-center gap-6 xl:gap-8 3xl:gap-12 font-medium text-[15px] 3xl:text-base text-gray-700">
 <a class="hover:text-primary transition-colors py-1 font-semibold" href="#models-pricing">Pool Pricing</a>
 <a class="hover:text-primary transition-colors py-1" href="#inclusions">Standard Inclusions</a>
 <a class="hover:text-primary transition-colors py-1" href="#process">Build Journey</a>
 <a class="hover:text-primary transition-colors py-1" href="#our-work">Portfolio</a>
 </nav>
 <!-- Phone & CTA Header -->
-<div class="flex items-center gap-3 sm:gap-4">
-<a class="hidden lg:flex flex-col text-right group" href="tel:805-217-2246">
+<div class="flex items-center gap-2 sm:gap-3 lg:gap-4">
+<a class="hidden xl:flex flex-col text-right group" href="tel:805-217-2246">
 <span class="text-[10px] font-bold uppercase tracking-wider text-gray-400">Direct Builder Line</span>
 <span class="font-headline font-bold text-[15px] text-navy-deep group-hover:text-accent transition-colors">805-217-2246</span>
 </a>
-<a class="inline-flex items-center justify-center gap-2 px-4 sm:px-5 py-2.5 rounded-lg font-headline font-bold text-sm bg-accent hover:bg-accent-hover text-white shadow-sm transition-all cursor-pointer" href="#consultation"><span class="material-symbols-outlined text-lg">calendar_today</span><span class="">Request Estimate</span></a>
+<!-- Icon only call button on phones -->
+<a aria-label="Call Hansen Waterscapes on 805 217 2246" class="xl:hidden inline-flex items-center justify-center w-11 h-11 rounded-lg bg-stone-bg border border-gray-200 text-primary hover:bg-stone-light transition-colors" href="tel:805-217-2246">
+<span class="material-symbols-outlined text-[22px]">call</span>
+</a>
+<a class="hidden sm:inline-flex items-center justify-center gap-2 px-4 sm:px-5 py-2.5 rounded-lg font-headline font-bold text-xs lg:text-sm bg-accent hover:bg-accent-hover text-white shadow-sm transition-all cursor-pointer whitespace-nowrap" href="#consultation"><span class="material-symbols-outlined text-lg">calendar_today</span><span class="">Request Estimate</span></a>
+<!-- Mobile menu toggle -->
+<button aria-controls="mobile-menu" aria-expanded="false" aria-label="Open navigation menu" class="lg:hidden inline-flex items-center justify-center w-11 h-11 rounded-lg border border-gray-300 text-navy-dark hover:bg-stone-bg transition-colors" id="mobile-menu-btn" type="button">
+<span class="material-symbols-outlined text-[24px]" id="mobile-menu-icon">menu</span>
+</button>
+</div>
+</div>
+<!-- Mobile Navigation Panel -->
+<div class="hidden lg:hidden border-t border-gray-200 bg-white max-h-[calc(100vh-130px)] overflow-y-auto" id="mobile-menu">
+<nav class="px-4 sm:px-6 py-3 flex flex-col divide-y divide-gray-100 font-medium text-[15px] text-slate-ink">
+<a class="py-3.5 flex items-center justify-between hover:text-primary transition-colors" href="#models-pricing"><span>Pool Pricing</span><span class="material-symbols-outlined text-[18px] text-gray-400">chevron_right</span></a>
+<a class="py-3.5 flex items-center justify-between hover:text-primary transition-colors" href="#inclusions"><span>Standard Inclusions</span><span class="material-symbols-outlined text-[18px] text-gray-400">chevron_right</span></a>
+<a class="py-3.5 flex items-center justify-between hover:text-primary transition-colors" href="#addons"><span>Popular Add-Ons</span><span class="material-symbols-outlined text-[18px] text-gray-400">chevron_right</span></a>
+<a class="py-3.5 flex items-center justify-between hover:text-primary transition-colors" href="#process"><span>Build Journey</span><span class="material-symbols-outlined text-[18px] text-gray-400">chevron_right</span></a>
+<a class="py-3.5 flex items-center justify-between hover:text-primary transition-colors" href="#our-work"><span>Portfolio &amp; Reviews</span><span class="material-symbols-outlined text-[18px] text-gray-400">chevron_right</span></a>
+<a class="py-3.5 flex items-center justify-between hover:text-primary transition-colors" href="#about-family"><span>The Hansen Difference</span><span class="material-symbols-outlined text-[18px] text-gray-400">chevron_right</span></a>
+</nav>
+<div class="px-4 sm:px-6 pb-5 grid grid-cols-1 gap-3">
+<a class="w-full py-3.5 px-5 rounded-xl bg-accent hover:bg-accent-hover text-white font-headline font-bold text-sm text-center shadow-sm transition-all" href="#consultation">Request Free Estimate</a>
+<a class="w-full py-3.5 px-5 rounded-xl bg-stone-bg border border-gray-200 text-navy-deep font-headline font-bold text-sm text-center transition-colors inline-flex items-center justify-center gap-2" href="tel:805-217-2246">
+<span class="material-symbols-outlined text-[18px] text-accent">call</span>805-217-2246
+      </a>
 </div>
 </div>
 </header>
 <main class="w-full">
 <!-- SECTION 1: HERO -->
-<section class="relative bg-stone-bg pt-10 sm:pt-14 pb-20 3xl:pt-16 3xl:pb-28 border-b border-gray-200 overflow-hidden">
+<section class="relative bg-stone-bg pt-8 sm:pt-14 pb-14 sm:pb-20 3xl:pt-16 3xl:pb-28 border-b border-gray-200 overflow-hidden">
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 2xl:px-10 3xl:px-12">
 <!-- Trust badge pill -->
-<div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-gray-200 shadow-xs mb-6">
-<span class="material-symbols-outlined text-primary text-[18px]">verified</span>
-<span class="text-xs sm:text-sm font-semibold text-navy-deep tracking-wide">California License #958067 · Family Owned &amp; Operated in Moorpark for 40+ Years</span>
+<div class="inline-flex items-start sm:items-center gap-2 px-3 sm:px-3.5 py-1.5 rounded-2xl sm:rounded-full bg-white border border-gray-200 shadow-xs mb-5 sm:mb-6">
+<span class="material-symbols-outlined text-primary text-[16px] sm:text-[18px] mt-0.5 sm:mt-0 shrink-0">verified</span>
+<span class="text-[11px] sm:text-sm font-semibold text-navy-deep tracking-wide leading-snug text-left">California License #958067 · Family Owned &amp; Operated in Moorpark for 40+ Years</span>
 </div>
 <!-- Hero Headline & Description -->
-<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 3xl:gap-16 items-end mb-10 3xl:mb-14">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 3xl:gap-16 items-end mb-8 sm:mb-10 3xl:mb-14">
 <div class="lg:col-span-8">
-<h1 class="font-headline text-4xl sm:text-6xl lg:text-7xl 3xl:text-[88px] font-extrabold text-navy-dark tracking-tight leading-[1.08]">
+<h1 class="font-headline text-[34px] sm:text-6xl lg:text-7xl 3xl:text-[88px] font-extrabold text-navy-dark tracking-tight leading-[1.08]">
             Exceptional Design.<br>
 <span class="text-accent">Extraordinary Craftsmanship.</span>
 </h1>
 </div>
 <div class="lg:col-span-4 flex flex-col justify-end">
-<p class="text-base sm:text-lg 3xl:text-xl text-body-slate leading-relaxed mb-6">
+<p class="text-[15px] sm:text-lg 3xl:text-xl text-body-slate leading-relaxed mb-5 sm:mb-6">
             Complete custom swimming pools and integrated therapy spas engineered for Ventura County homeowners who demand monolithic strength, transparent pricing, and zero builder excuses.
           </p>
-<div class="flex flex-wrap gap-3 sm:gap-4 items-center">
-<a class="inline-flex items-center justify-center px-7 py-3.5 rounded-xl font-headline font-bold text-base bg-accent text-white shadow-md hover:bg-accent-hover hover:-translate-y-0.5 transition-all" href="#models-pricing">
+<div class="flex flex-col xs:flex-row flex-wrap gap-3 sm:gap-4 items-stretch xs:items-center">
+<a class="inline-flex items-center justify-center px-6 sm:px-7 py-3.5 rounded-xl font-headline font-bold text-[15px] sm:text-base bg-accent text-white shadow-md hover:bg-accent-hover hover:-translate-y-0.5 transition-all" href="#models-pricing">
               Explore Models &amp; Pricing
               <span class="material-symbols-outlined ml-2 text-xl">arrow_forward</span>
 </a>
-<a class="inline-flex items-center justify-center px-6 py-3.5 rounded-xl font-headline font-semibold text-base bg-white text-slate-ink border border-gray-300 hover:border-primary hover:text-primary transition-all" href="#inclusions">
+<a class="inline-flex items-center justify-center px-6 py-3.5 rounded-xl font-headline font-semibold text-[15px] sm:text-base bg-white text-slate-ink border border-gray-300 hover:border-primary hover:text-primary transition-all" href="#inclusions">
               Standard Inclusions
             </a>
 </div>
 </div>
 </div>
-<!-- Hero Featured Full-Bleed Image Frame with Glassmorphism Overlay -->
+<!-- Hero Featured Image Frame with Overlay Card -->
 <div class="relative w-full rounded-2xl sm:rounded-3xl overflow-hidden shadow-xl border border-gray-200 bg-navy-dark group">
-<img alt="Architectural luxury modern pool and integrated spa in Moorpark at golden dusk" class="w-full h-[380px] sm:h-[500px] lg:h-[620px] 3xl:h-[720px] object-cover object-center group-hover:scale-102 transition-transform duration-700 ease-out" src="https://aarongabriel29.github.io/Hansen-mock-up/images/images/B71I8752.webp">
+<img alt="Architectural luxury modern pool and integrated spa in Moorpark at golden dusk" class="w-full h-[300px] sm:h-[500px] lg:h-[620px] 3xl:h-[720px] object-cover object-center group-hover:scale-102 transition-transform duration-700 ease-out" src="https://aarongabriel29.github.io/Hansen-mock-up/images/images/B71I8752.webp">
 <div class="absolute inset-0 bg-gradient-to-t from-navy-dark/85 via-transparent to-black/10 pointer-events-none"></div>
 <!-- Hero Floating Inset Card -->
-<div class="absolute bottom-6 left-6 sm:bottom-10 sm:left-10 right-6 sm:right-auto max-w-md bg-white/95 backdrop-blur-md p-5 sm:p-6 rounded-2xl shadow-xl border border-white/60">
-<div class="flex items-center gap-2 mb-2 text-accent text-xs font-bold uppercase tracking-wider">
-<span class="material-symbols-outlined text-base">water_drop</span>
+<div class="absolute bottom-3 left-3 right-3 sm:bottom-10 sm:left-10 sm:right-auto sm:max-w-md bg-white/95 backdrop-blur-md p-4 sm:p-6 rounded-xl sm:rounded-2xl shadow-xl border border-white/60">
+<div class="flex items-center gap-2 mb-1.5 sm:mb-2 text-accent text-[10px] sm:text-xs font-bold uppercase tracking-wider">
+<span class="material-symbols-outlined text-[15px] sm:text-base">water_drop</span>
 <span class="">Featured Moorpark Residence</span>
 </div>
-<h3 class="font-headline text-lg sm:text-xl font-bold text-navy-dark leading-tight">
+<h3 class="font-headline text-base sm:text-xl font-bold text-navy-dark leading-tight">
             Monolithic Shotcrete Shell with Zero-Edge Spillway
           </h3>
-<p class="text-xs sm:text-sm text-body-slate mt-1">
+<p class="hidden xs:block text-xs sm:text-sm text-body-slate mt-1">
             Engineered with 4,500 PSI pneumatic concrete, automated Pentair intelligence, and quartz aggregate.
           </p>
 </div>
 </div>
 <!-- 4 Instant Trust Highlight Pills -->
-<div class="mt-6 3xl:mt-8 grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 3xl:gap-6">
-<div class="flex items-center gap-3 3xl:gap-4 p-3.5 3xl:p-5 rounded-xl bg-white border border-gray-200 shadow-xs">
-<div class="w-10 h-10 rounded-lg bg-blue-50 flex items-center justify-center shrink-0 text-primary">
-<span class="material-symbols-outlined text-2xl">hot_tub</span>
+<div class="mt-5 sm:mt-6 3xl:mt-8 grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 3xl:gap-6">
+<div class="flex flex-col sm:flex-row sm:items-center gap-2.5 sm:gap-3 3xl:gap-4 p-3.5 3xl:p-5 rounded-xl bg-white border border-gray-200 shadow-xs">
+<div class="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-blue-50 flex items-center justify-center shrink-0 text-primary">
+<span class="material-symbols-outlined text-xl sm:text-2xl">hot_tub</span>
 </div>
 <div>
-<div class="font-headline font-bold text-xs sm:text-sm text-slate-ink">Spa Included in Every Build</div>
-<div class="text-[11px] sm:text-xs text-gray-500">No $25,000 hidden add-on</div>
+<div class="font-headline font-bold text-xs sm:text-sm text-slate-ink leading-snug">Spa Included in Every Build</div>
+<div class="text-[11px] sm:text-xs text-gray-500 leading-snug">No $25,000 hidden add-on</div>
 </div>
 </div>
-<div class="flex items-center gap-3 3xl:gap-4 p-3.5 3xl:p-5 rounded-xl bg-white border border-gray-200 shadow-xs">
-<div class="w-10 h-10 rounded-lg bg-orange-50 flex items-center justify-center shrink-0 text-accent">
-<span class="material-symbols-outlined text-2xl">engineering</span>
-</div>
-<div>
-<div class="font-headline font-bold text-xs sm:text-sm text-slate-ink">3rd Gen In-House Crews</div>
-<div class="text-[11px] sm:text-xs text-gray-500">The family runs the job site</div>
-</div>
-</div>
-<div class="flex items-center gap-3 3xl:gap-4 p-3.5 3xl:p-5 rounded-xl bg-white border border-gray-200 shadow-xs">
-<div class="w-10 h-10 rounded-lg bg-blue-50 flex items-center justify-center shrink-0 text-primary">
-<span class="material-symbols-outlined text-2xl">description</span>
+<div class="flex flex-col sm:flex-row sm:items-center gap-2.5 sm:gap-3 3xl:gap-4 p-3.5 3xl:p-5 rounded-xl bg-white border border-gray-200 shadow-xs">
+<div class="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-orange-50 flex items-center justify-center shrink-0 text-accent">
+<span class="material-symbols-outlined text-xl sm:text-2xl">engineering</span>
 </div>
 <div>
-<div class="font-headline font-bold text-xs sm:text-sm text-slate-ink">Turnkey Permitting</div>
-<div class="text-[11px] sm:text-xs text-gray-500">Ventura County approvals handled</div>
+<div class="font-headline font-bold text-xs sm:text-sm text-slate-ink leading-snug">3rd Gen In-House Crews</div>
+<div class="text-[11px] sm:text-xs text-gray-500 leading-snug">The family runs the job site</div>
 </div>
 </div>
-<div class="flex items-center gap-3 3xl:gap-4 p-3.5 3xl:p-5 rounded-xl bg-white border border-gray-200 shadow-xs">
-<div class="w-10 h-10 rounded-lg bg-emerald-50 flex items-center justify-center shrink-0 text-emerald-600">
-<span class="material-symbols-outlined text-2xl">view_in_ar</span>
+<div class="flex flex-col sm:flex-row sm:items-center gap-2.5 sm:gap-3 3xl:gap-4 p-3.5 3xl:p-5 rounded-xl bg-white border border-gray-200 shadow-xs">
+<div class="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-blue-50 flex items-center justify-center shrink-0 text-primary">
+<span class="material-symbols-outlined text-xl sm:text-2xl">description</span>
 </div>
 <div>
-<div class="font-headline font-bold text-xs sm:text-sm text-slate-ink">3D Elevation Study</div>
-<div class="text-[11px] sm:text-xs text-gray-500">Laser graded hillside survey</div>
+<div class="font-headline font-bold text-xs sm:text-sm text-slate-ink leading-snug">Turnkey Permitting</div>
+<div class="text-[11px] sm:text-xs text-gray-500 leading-snug">Ventura County approvals handled</div>
+</div>
+</div>
+<div class="flex flex-col sm:flex-row sm:items-center gap-2.5 sm:gap-3 3xl:gap-4 p-3.5 3xl:p-5 rounded-xl bg-white border border-gray-200 shadow-xs">
+<div class="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-emerald-50 flex items-center justify-center shrink-0 text-emerald-600">
+<span class="material-symbols-outlined text-xl sm:text-2xl">view_in_ar</span>
+</div>
+<div>
+<div class="font-headline font-bold text-xs sm:text-sm text-slate-ink leading-snug">3D Elevation Study</div>
+<div class="text-[11px] sm:text-xs text-gray-500 leading-snug">Laser graded hillside survey</div>
 </div>
 </div>
 </div>
 </div>
 </section>
-<!-- SECTION 2: DYNAMIC "BRING YOUR DREAM POOL TO LIFE" -->
-<section class="py-20 sm:py-28 3xl:py-32 bg-white border-b border-gray-200" id="about-family">
+<!-- SECTION 2: BRING YOUR DREAM POOL TO LIFE -->
+<section class="py-14 sm:py-24 3xl:py-32 bg-white border-b border-gray-200" id="about-family">
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 2xl:px-10 3xl:px-12">
-<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 3xl:gap-24 items-center">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-10 sm:gap-12 lg:gap-16 3xl:gap-24 items-center">
 <!-- Left Column: Narrative & Value Blocks -->
-<div class="lg:col-span-6 flex flex-col"><div class="inline-flex items-center gap-2 text-primary font-headline font-semibold text-xs uppercase tracking-widest mb-3"><span class="w-6 h-[2px] bg-primary"></span><span class="">The Hansen Difference</span></div><h2 class="font-headline text-3xl sm:text-5xl 3xl:text-6xl font-bold text-navy-dark tracking-tight leading-tight mb-6">Bring your dream pool to life.</h2><p class="text-base sm:text-lg 3xl:text-xl text-body-slate leading-relaxed mb-8">For over four decades in Moorpark, our family has designed and engineered monolithic private escapes across Ventura County. We cut out sales middlemen and sub-grade gunite, delivering 4,500 PSI shotcrete with owner-managed precision from day one.</p><div class="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-2"><div class="flex flex-col gap-2"><div class="w-10 h-10 rounded-xl bg-blue-50 text-primary flex items-center justify-center border border-blue-100"><span class="material-symbols-outlined text-2xl">groups</span></div><h4 class="font-headline font-bold text-base text-slate-ink">In-House Master Crews</h4><p class="text-xs sm:text-sm text-body-slate leading-relaxed">The family name on our trucks is on your build site every day—never subcontracted away.</p></div><div class="flex flex-col gap-2"><div class="w-10 h-10 rounded-xl bg-orange-50 text-accent flex items-center justify-center border border-orange-100"><span class="material-symbols-outlined text-2xl">spa</span></div><h4 class="font-headline font-bold text-base text-slate-ink">Spa Included Standard</h4><p class="text-xs sm:text-sm text-body-slate leading-relaxed">Custom 6-to-8 jet hydrotherapy spa with high-efficiency rapid heating in every build.</p></div><div class="flex flex-col gap-2"><div class="w-10 h-10 rounded-xl bg-blue-50 text-primary flex items-center justify-center border border-blue-100"><span class="material-symbols-outlined text-2xl">architecture</span></div><h4 class="font-headline font-bold text-base text-slate-ink">3D Sun &amp; Elevation Survey</h4><p class="text-xs sm:text-sm text-body-slate leading-relaxed">Laser-plotted solar orientation, soil drainage, and municipal setback engineering.</p></div><div class="flex flex-col gap-2"><div class="w-10 h-10 rounded-xl bg-orange-50 text-accent flex items-center justify-center border border-orange-100"><span class="material-symbols-outlined text-2xl">verified</span></div><h4 class="font-headline font-bold text-base text-slate-ink">4,500 PSI Shotcrete</h4><p class="text-xs sm:text-sm text-body-slate leading-relaxed">Monolithic pneumatic concrete engineered specifically for challenging California hillsides.</p></div></div></div>
-<!-- Right Column: Project Showcase Image + Floating Glassmorphic Badge -->
+<div class="lg:col-span-6 flex flex-col"><div class="inline-flex items-center gap-2 text-primary font-headline font-semibold text-[10px] sm:text-xs uppercase tracking-widest mb-3"><span class="w-6 h-[2px] bg-primary"></span><span class="">The Hansen Difference</span></div><h2 class="font-headline text-[28px] sm:text-5xl 3xl:text-6xl font-bold text-navy-dark tracking-tight leading-tight mb-5 sm:mb-6">Bring your dream pool to life.</h2><p class="text-[15px] sm:text-lg 3xl:text-xl text-body-slate leading-relaxed mb-7 sm:mb-8">For over four decades in Moorpark, our family has designed and engineered monolithic private escapes across Ventura County. We cut out sales middlemen and sub-grade gunite, delivering 4,500 PSI shotcrete with owner-managed precision from day one.</p><div class="grid grid-cols-1 xs:grid-cols-2 gap-5 sm:gap-6 pt-2"><div class="flex flex-col gap-2"><div class="w-10 h-10 rounded-xl bg-blue-50 text-primary flex items-center justify-center border border-blue-100"><span class="material-symbols-outlined text-2xl">groups</span></div><h4 class="font-headline font-bold text-[15px] sm:text-base text-slate-ink">In-House Master Crews</h4><p class="text-xs sm:text-sm text-body-slate leading-relaxed">The family name on our trucks is on your build site every day, never subcontracted away.</p></div><div class="flex flex-col gap-2"><div class="w-10 h-10 rounded-xl bg-orange-50 text-accent flex items-center justify-center border border-orange-100"><span class="material-symbols-outlined text-2xl">spa</span></div><h4 class="font-headline font-bold text-[15px] sm:text-base text-slate-ink">Spa Included Standard</h4><p class="text-xs sm:text-sm text-body-slate leading-relaxed">Custom 6-to-8 jet hydrotherapy spa with high-efficiency rapid heating in every build.</p></div><div class="flex flex-col gap-2"><div class="w-10 h-10 rounded-xl bg-blue-50 text-primary flex items-center justify-center border border-blue-100"><span class="material-symbols-outlined text-2xl">architecture</span></div><h4 class="font-headline font-bold text-[15px] sm:text-base text-slate-ink">3D Sun &amp; Elevation Survey</h4><p class="text-xs sm:text-sm text-body-slate leading-relaxed">Laser-plotted solar orientation, soil drainage, and municipal setback engineering.</p></div><div class="flex flex-col gap-2"><div class="w-10 h-10 rounded-xl bg-orange-50 text-accent flex items-center justify-center border border-orange-100"><span class="material-symbols-outlined text-2xl">verified</span></div><h4 class="font-headline font-bold text-[15px] sm:text-base text-slate-ink">4,500 PSI Shotcrete</h4><p class="text-xs sm:text-sm text-body-slate leading-relaxed">Monolithic pneumatic concrete engineered specifically for challenging California hillsides.</p></div></div></div>
+<!-- Right Column: Project Showcase Image -->
 <div class="lg:col-span-6 relative">
-<div class="relative rounded-3xl overflow-hidden shadow-xl border border-gray-200">
-<img alt="Modern geometric pool with submerged Baja shelf in Moorpark" class="w-full h-[480px] sm:h-[580px] object-cover object-center" src="https://aarongabriel29.github.io/Hansen-mock-up/images/images/o.jpg">
+<div class="relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-xl border border-gray-200">
+<img alt="Modern geometric pool with submerged Baja shelf in Moorpark" class="w-full h-[340px] sm:h-[580px] object-cover object-center" src="https://aarongabriel29.github.io/Hansen-mock-up/images/images/o.jpg">
 <div class="absolute inset-0 bg-gradient-to-t from-navy-dark/75 via-transparent to-transparent"></div>
-<!-- Floating Glassmorphic Architectural Badge -->
-<div class="absolute bottom-6 left-6 right-6 sm:right-auto sm:max-w-md bg-white/95 backdrop-blur-md p-5 rounded-2xl border border-white/70 shadow-lg">
-<div class="flex items-center justify-between gap-2 mb-1.5">
-<span class="font-headline font-bold text-primary text-xs uppercase tracking-wider">Featured Ventura County Build</span>
-<span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-blue-50 text-navy-deep border border-blue-100">License #958067</span>
+<!-- Floating Architectural Badge -->
+<div class="absolute bottom-3 left-3 right-3 sm:bottom-6 sm:left-6 sm:right-auto sm:max-w-md bg-white/95 backdrop-blur-md p-4 sm:p-5 rounded-xl sm:rounded-2xl border border-white/70 shadow-lg">
+<div class="flex flex-wrap items-center justify-between gap-2 mb-1.5">
+<span class="font-headline font-bold text-primary text-[10px] sm:text-xs uppercase tracking-wider">Featured Ventura County Build</span>
+<span class="px-2 py-0.5 rounded text-[10px] sm:text-[11px] font-semibold bg-blue-50 text-navy-deep border border-blue-100">License #958067</span>
 </div>
-<div class="font-headline font-extrabold text-base sm:text-lg text-navy-dark">
+<div class="font-headline font-extrabold text-[15px] sm:text-lg text-navy-dark leading-snug">
                 14' × 28' Classic with 7' Baja Shelf
               </div>
-<p class="text-xs text-body-slate mt-1">
+<p class="text-[11px] sm:text-xs text-body-slate mt-1">
                 Engineered with 4,500 PSI shotcrete, Pebble-quartz finish, and waterline travertine coping.
               </p>
 </div>
@@ -216,19 +256,19 @@
 </div>
 </div>
 </section>
-<!-- SECTION 3: REIMAGINED MODUL POOLS HORIZONTAL PRICING SECTION -->
-<section class="py-24 3xl:py-32 bg-stone-bg border-b border-gray-200" id="models-pricing">
+<!-- SECTION 3: HORIZONTAL PRICING -->
+<section class="py-14 sm:py-24 3xl:py-32 bg-stone-bg border-b border-gray-200" id="models-pricing">
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 2xl:px-10 3xl:px-12">
-<!-- Section Header with Modul-style Title & Nav Controls -->
-<div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-6">
-<div class="max-w-3xl"><div class="inline-flex items-center gap-2 text-accent font-headline font-semibold text-xs uppercase tracking-widest mb-3"><span class="w-6 h-[2px] bg-accent"></span><span class="">Transparent Upfront Estimations</span></div><h2 class="font-headline text-3xl sm:text-5xl 3xl:text-6xl font-bold text-navy-dark tracking-tight leading-tight">Custom Pool &amp; Spa Pricing</h2><p class="text-base sm:text-lg 3xl:text-xl text-body-slate mt-3 leading-relaxed">Every baseline package includes a fully integrated custom hydrotherapy spa, premium Pentair equipment, and complete excavation with no hidden add-ons.</p></div>
-<!-- Carousel arrows & Category pill toggles -->
+<!-- Section Header with Title & Nav Controls -->
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-6 sm:mb-8 gap-5 sm:gap-6">
+<div class="max-w-3xl"><div class="inline-flex items-center gap-2 text-accent font-headline font-semibold text-[10px] sm:text-xs uppercase tracking-widest mb-3"><span class="w-6 h-[2px] bg-accent"></span><span class="">Transparent Upfront Estimations</span></div><h2 class="font-headline text-[28px] sm:text-5xl 3xl:text-6xl font-bold text-navy-dark tracking-tight leading-tight">Custom Pool &amp; Spa Pricing</h2><p class="text-[15px] sm:text-lg 3xl:text-xl text-body-slate mt-3 leading-relaxed">Every baseline package includes a fully integrated custom hydrotherapy spa, premium Pentair equipment, and complete excavation with no hidden add-ons.</p></div>
+<!-- Category toggles & carousel arrows -->
 <div class="flex flex-col sm:flex-row sm:items-center gap-3 shrink-0">
-<div class="inline-flex p-1 rounded-xl bg-white border border-gray-200 text-xs font-semibold text-gray-600 shadow-2xs">
-<button class="px-3 py-1.5 rounded-lg bg-navy-dark text-white font-medium">Standard Footprints</button>
-<button class="px-3 py-1.5 rounded-lg hover:text-navy-deep transition-colors">Expanded Estate Footprints</button>
+<div class="inline-flex p-1 rounded-xl bg-white border border-gray-200 text-[11px] sm:text-xs font-semibold text-gray-600 shadow-2xs overflow-x-auto no-scrollbar">
+<button class="px-3 py-2 sm:py-1.5 rounded-lg bg-navy-dark text-white font-medium whitespace-nowrap">Standard Footprints</button>
+<button class="px-3 py-2 sm:py-1.5 rounded-lg hover:text-navy-deep transition-colors whitespace-nowrap">Expanded Estate Footprints</button>
 </div>
-<div class="flex items-center gap-2 self-end sm:self-auto">
+<div class="hidden sm:flex items-center gap-2 self-end sm:self-auto">
 <button aria-label="Previous model" class="w-11 h-11 rounded-full border border-gray-300 bg-white hover:bg-navy-dark hover:text-white hover:border-navy-dark text-gray-700 shadow-2xs flex items-center justify-center transition-all cursor-pointer" id="h-prev">
 <span class="material-symbols-outlined text-xl">west</span>
 </button>
@@ -238,389 +278,415 @@
 </div>
 </div>
 </div>
-<!-- Horizontal Modul Pools Style Pricing Track -->
-<div class="flex gap-6 overflow-x-auto no-scrollbar scroll-smooth pb-6 pt-2 snap-x snap-mandatory" id="modul-pricing-track">
+<!-- Horizontal Pricing Track -->
+<div class="flex gap-4 sm:gap-6 overflow-x-auto no-scrollbar scroll-smooth pb-6 pt-2 snap-x snap-mandatory -mx-4 px-4 sm:mx-0 sm:px-0 scroll-pl-4 sm:scroll-pl-0" id="modul-pricing-track">
 <!-- CARD 1: Tier 01 (12' x 24') -->
-<div class="w-[90vw] sm:w-[500px] lg:w-[560px] 3xl:w-[548px] shrink-0 bg-white border border-gray-200 rounded-3xl overflow-hidden shadow-md hover:shadow-xl transition-all flex flex-col justify-between snap-start group">
+<div class="w-[88vw] max-w-[420px] sm:w-[500px] sm:max-w-none lg:w-[560px] 3xl:w-[548px] shrink-0 bg-white border border-gray-200 rounded-2xl sm:rounded-3xl overflow-hidden shadow-md hover:shadow-xl transition-all flex flex-col justify-between snap-start group">
 <div>
-<!-- Wide Panoramic Visual (Modul Style) -->
-<div class="relative h-[270px] sm:h-[300px] w-full overflow-hidden bg-navy-dark">
+<!-- Panoramic Visual -->
+<div class="relative h-[220px] sm:h-[300px] w-full overflow-hidden bg-navy-dark">
 <img alt="Tier 01 12x24 Monolithic In-Ground Shell" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" src="https://aarongabriel29.github.io/Hansen-mock-up/images/images/o%20(3).jpg">
 <div class="absolute inset-0 bg-gradient-to-t from-navy-dark/90 via-navy-dark/20 to-transparent"></div>
-<!-- Clean Dimensional Badge like Modul Pools -->
-<div class="absolute top-4 left-4 flex items-center gap-2">
-<span class="bg-navy-dark/90 backdrop-blur-md text-white text-xs font-headline font-bold px-3.5 py-1.5 rounded-full border border-white/20 uppercase tracking-wide">
+<div class="absolute top-3 left-3 sm:top-4 sm:left-4 flex items-center gap-2">
+<span class="bg-navy-dark/90 backdrop-blur-md text-white text-[10px] sm:text-xs font-headline font-bold px-3 sm:px-3.5 py-1.5 rounded-full border border-white/20 uppercase tracking-wide">
                   Tier 01 · 12' × 24'
                 </span>
-
 </div>
-<!-- Overlaid Bottom Pricing Band on Image -->
-<div class="absolute bottom-4 left-5 right-5 flex items-end justify-between">
+<!-- Overlaid Pricing Band -->
+<div class="absolute bottom-3 left-4 right-4 sm:bottom-4 sm:left-5 sm:right-5 flex flex-wrap items-end justify-between gap-x-3 gap-y-1">
 <div>
-<div class="text-[11px] font-bold uppercase tracking-wider text-orange-300">Turnkey Total</div>
-<div class="text-3xl sm:text-4xl 3xl:text-5xl font-headline font-extrabold text-white tracking-tight leading-none">$69,995</div>
+<div class="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-orange-300">Turnkey Total</div>
+<div class="text-[30px] sm:text-4xl 3xl:text-5xl font-headline font-extrabold text-white tracking-tight leading-none">$69,995</div>
 </div>
-<div class="text-right">
-<div class="text-[11px] font-medium text-gray-300">Est. Financing</div>
-<div class="text-sm font-bold text-white bg-white/20 backdrop-blur-md px-2.5 py-1 rounded-lg">$465 / month</div>
+<div class="text-left sm:text-right">
+<div class="text-[10px] sm:text-[11px] font-medium text-gray-300">Est. Financing</div>
+<div class="text-xs sm:text-sm font-bold text-white bg-white/20 backdrop-blur-md px-2.5 py-1 rounded-lg whitespace-nowrap">$465 / month</div>
 </div>
 </div>
 </div>
 <!-- Content Specs -->
-<div class="p-6 sm:p-7">
-<h3 class="font-headline text-2xl font-bold text-navy-dark mb-1">Compact In-Ground</h3>
-<p class="text-xs sm:text-sm text-body-slate mb-5">Ideal for standard suburban footprints &amp; low-maintenance relaxation.</p>
-<!-- Inclusions Grid -->
+<div class="p-5 sm:p-7">
+<h3 class="font-headline text-xl sm:text-2xl font-bold text-navy-dark mb-1">Compact In-Ground</h3>
+<p class="text-xs sm:text-sm text-body-slate mb-4 sm:mb-5">Ideal for standard suburban footprints &amp; low-maintenance relaxation.</p>
 <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-4 border-t border-gray-100 text-xs text-body-slate">
-<div class="flex items-center gap-2 bg-stone-bg/80 p-2.5 rounded-xl border border-gray-100">
-<span class="material-symbols-outlined text-emerald-600 text-base">check_circle</span>
+<div class="flex items-start gap-2 bg-stone-bg/80 p-2.5 rounded-xl border border-gray-100">
+<span class="material-symbols-outlined text-emerald-600 text-base shrink-0">check_circle</span>
 <span class=""><strong>Integrated Hydrotherapy Spa</strong> with 6 jets</span>
 </div>
-<div class="flex items-center gap-2 bg-stone-bg/80 p-2.5 rounded-xl border border-gray-100">
-<span class="material-symbols-outlined text-emerald-600 text-base">check_circle</span>
+<div class="flex items-start gap-2 bg-stone-bg/80 p-2.5 rounded-xl border border-gray-100">
+<span class="material-symbols-outlined text-emerald-600 text-base shrink-0">check_circle</span>
 <span class="">Pentair WhisperFlo variable-speed pump</span>
 </div>
-<div class="flex items-center gap-2 bg-stone-bg/80 p-2.5 rounded-xl border border-gray-100">
-<span class="material-symbols-outlined text-emerald-600 text-base">check_circle</span>
+<div class="flex items-start gap-2 bg-stone-bg/80 p-2.5 rounded-xl border border-gray-100">
+<span class="material-symbols-outlined text-emerald-600 text-base shrink-0">check_circle</span>
 <span class="">Turnkey excavation &amp; municipal soil permits</span>
 </div>
-<div class="flex items-center gap-2 bg-stone-bg/80 p-2.5 rounded-xl border border-gray-100">
-<span class="material-symbols-outlined text-emerald-600 text-base">check_circle</span>
+<div class="flex items-start gap-2 bg-stone-bg/80 p-2.5 rounded-xl border border-gray-100">
+<span class="material-symbols-outlined text-emerald-600 text-base shrink-0">check_circle</span>
 <span class="">Pneumatic 4,500 PSI shotcrete structure</span>
 </div>
 </div>
 </div>
 </div>
-<div class="p-6 sm:p-7 pt-0">
+<div class="p-5 sm:p-7 pt-0">
 <a class="block w-full py-3.5 px-6 rounded-xl font-headline font-bold text-center text-white bg-accent hover:bg-accent-hover transition-all shadow-sm cursor-pointer" href="#consultation">
               Customize This Package
             </a>
 </div>
 </div>
-<!-- CARD 2: Tier 02 (14' x 28') - Top Builder Choice -->
-<div class="w-[90vw] sm:w-[500px] lg:w-[560px] 3xl:w-[548px] shrink-0 bg-white border-2 border-navy-deep rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all flex flex-col justify-between snap-start group relative">
+<!-- CARD 2: Tier 02 (14' x 28') -->
+<div class="w-[88vw] max-w-[420px] sm:w-[500px] sm:max-w-none lg:w-[560px] 3xl:w-[548px] shrink-0 bg-white border-2 border-navy-deep rounded-2xl sm:rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all flex flex-col justify-between snap-start group relative">
 <!-- Top Popular Badge -->
-<div class="absolute top-0 right-0 z-20 bg-accent text-white font-headline text-[11px] font-extrabold uppercase tracking-wider py-1 px-4 rounded-bl-xl shadow-xs">
-            Most Popular in Thousand Oaks &amp; Camarillo
-          </div>
+<div class="absolute top-0 right-0 z-20 bg-accent text-white font-headline text-[9px] sm:text-[11px] font-extrabold uppercase tracking-wider py-1 px-3 sm:px-4 rounded-bl-xl shadow-xs max-w-[65%] text-right leading-tight">
+<span class="sm:hidden">Most Popular</span>
+<span class="hidden sm:inline">Most Popular in Thousand Oaks &amp; Camarillo</span>
+</div>
 <div>
-<!-- Wide Panoramic Visual -->
-<div class="relative h-[270px] sm:h-[300px] w-full overflow-hidden bg-navy-dark">
+<div class="relative h-[220px] sm:h-[300px] w-full overflow-hidden bg-navy-dark">
 <img alt="Tier 02 14x28 Classic Family with 7ft Baja Shelf" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" src="https://aarongabriel29.github.io/Hansen-mock-up/images/images/Photo%2BApr%2B02%2C%2B6%2B57%2B02%2BPM.webp">
 <div class="absolute inset-0 bg-gradient-to-t from-navy-dark/90 via-navy-dark/20 to-transparent"></div>
-<div class="absolute top-4 left-4 flex items-center gap-2">
-<span class="bg-navy-deep text-white text-xs font-headline font-bold px-3.5 py-1.5 rounded-full border border-white/20 uppercase tracking-wide">
+<div class="absolute top-3 left-3 sm:top-4 sm:left-4 flex items-center gap-2">
+<span class="bg-navy-deep text-white text-[10px] sm:text-xs font-headline font-bold px-3 sm:px-3.5 py-1.5 rounded-full border border-white/20 uppercase tracking-wide">
                   Tier 02 · 14' × 28'
                 </span>
-
 </div>
-<!-- Overlaid Bottom Pricing Band on Image -->
-<div class="absolute bottom-4 left-5 right-5 flex items-end justify-between">
+<div class="absolute bottom-3 left-4 right-4 sm:bottom-4 sm:left-5 sm:right-5 flex flex-wrap items-end justify-between gap-x-3 gap-y-1">
 <div>
-<div class="text-[11px] font-bold uppercase tracking-wider text-orange-300">Turnkey Total</div>
-<div class="text-3xl sm:text-4xl 3xl:text-5xl font-headline font-extrabold text-white tracking-tight leading-none">$79,995</div>
+<div class="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-orange-300">Turnkey Total</div>
+<div class="text-[30px] sm:text-4xl 3xl:text-5xl font-headline font-extrabold text-white tracking-tight leading-none">$79,995</div>
 </div>
-<div class="text-right">
-<div class="text-[11px] font-medium text-gray-300">Est. Financing</div>
-<div class="text-sm font-bold text-white bg-white/20 backdrop-blur-md px-2.5 py-1 rounded-lg">$535 / month</div>
+<div class="text-left sm:text-right">
+<div class="text-[10px] sm:text-[11px] font-medium text-gray-300">Est. Financing</div>
+<div class="text-xs sm:text-sm font-bold text-white bg-white/20 backdrop-blur-md px-2.5 py-1 rounded-lg whitespace-nowrap">$535 / month</div>
 </div>
 </div>
 </div>
-<!-- Content Specs -->
-<div class="p-6 sm:p-7">
-<h3 class="font-headline text-2xl font-bold text-navy-dark mb-1">Classic Family</h3>
-<p class="text-xs sm:text-sm text-body-slate mb-5">Full swim envelope, wide sun shelf, and 7-person spa.</p>
-<!-- Inclusions Grid -->
+<div class="p-5 sm:p-7">
+<h3 class="font-headline text-xl sm:text-2xl font-bold text-navy-dark mb-1">Classic Family</h3>
+<p class="text-xs sm:text-sm text-body-slate mb-4 sm:mb-5">Full swim envelope, wide sun shelf, and 7-person spa.</p>
 <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-4 border-t border-gray-100 text-xs text-body-slate">
-<div class="flex items-center gap-2 bg-blue-50/60 p-2.5 rounded-xl border border-blue-100">
-<span class="material-symbols-outlined text-emerald-600 text-base">check_circle</span>
+<div class="flex items-start gap-2 bg-blue-50/60 p-2.5 rounded-xl border border-blue-100">
+<span class="material-symbols-outlined text-emerald-600 text-base shrink-0">check_circle</span>
 <span class=""><strong>6' × 7' Submerged Baja Tanning Shelf</strong> included</span>
 </div>
-<div class="flex items-center gap-2 bg-blue-50/60 p-2.5 rounded-xl border border-blue-100">
-<span class="material-symbols-outlined text-emerald-600 text-base">check_circle</span>
+<div class="flex items-start gap-2 bg-blue-50/60 p-2.5 rounded-xl border border-blue-100">
+<span class="material-symbols-outlined text-emerald-600 text-base shrink-0">check_circle</span>
 <span class=""><strong>Integrated 7-Person Spa</strong> with dual spillway</span>
 </div>
-<div class="flex items-center gap-2 bg-blue-50/60 p-2.5 rounded-xl border border-blue-100">
-<span class="material-symbols-outlined text-emerald-600 text-base">check_circle</span>
+<div class="flex items-start gap-2 bg-blue-50/60 p-2.5 rounded-xl border border-blue-100">
+<span class="material-symbols-outlined text-emerald-600 text-base shrink-0">check_circle</span>
 <span class="">Pentair IntelliConnect smartphone automation</span>
 </div>
-<div class="flex items-center gap-2 bg-blue-50/60 p-2.5 rounded-xl border border-blue-100">
-<span class="material-symbols-outlined text-emerald-600 text-base">check_circle</span>
+<div class="flex items-start gap-2 bg-blue-50/60 p-2.5 rounded-xl border border-blue-100">
+<span class="material-symbols-outlined text-emerald-600 text-base shrink-0">check_circle</span>
 <span class="">Quartz aggregate finish with 10-yr structural warranty</span>
 </div>
 </div>
 </div>
 </div>
-<div class="p-6 sm:p-7 pt-0">
+<div class="p-5 sm:p-7 pt-0">
 <a class="block w-full py-3.5 px-6 rounded-xl font-headline font-bold text-center text-white bg-accent hover:bg-accent-hover transition-all shadow-md cursor-pointer" href="#consultation">
               Customize This Package
             </a>
 </div>
 </div>
 <!-- CARD 3: Tier 03 (16' x 32') -->
-<div class="w-[90vw] sm:w-[500px] lg:w-[560px] 3xl:w-[548px] shrink-0 bg-white border border-gray-200 rounded-3xl overflow-hidden shadow-md hover:shadow-xl transition-all flex flex-col justify-between snap-start group">
+<div class="w-[88vw] max-w-[420px] sm:w-[500px] sm:max-w-none lg:w-[560px] 3xl:w-[548px] shrink-0 bg-white border border-gray-200 rounded-2xl sm:rounded-3xl overflow-hidden shadow-md hover:shadow-xl transition-all flex flex-col justify-between snap-start group">
 <div>
-<!-- Wide Panoramic Visual -->
-<div class="relative h-[270px] sm:h-[300px] w-full overflow-hidden bg-navy-dark">
+<div class="relative h-[220px] sm:h-[300px] w-full overflow-hidden bg-navy-dark">
 <img alt="Tier 03 16x32 Family and Entertainer Custom Pool and Spa" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" src="https://aarongabriel29.github.io/Hansen-mock-up/images/images/o%20(10).jpg">
 <div class="absolute inset-0 bg-gradient-to-t from-navy-dark/90 via-navy-dark/20 to-transparent"></div>
-<div class="absolute top-4 left-4 flex items-center gap-2">
-<span class="bg-navy-dark/90 backdrop-blur-md text-white text-xs font-headline font-bold px-3.5 py-1.5 rounded-full border border-white/20 uppercase tracking-wide">
+<div class="absolute top-3 left-3 sm:top-4 sm:left-4 flex items-center gap-2">
+<span class="bg-navy-dark/90 backdrop-blur-md text-white text-[10px] sm:text-xs font-headline font-bold px-3 sm:px-3.5 py-1.5 rounded-full border border-white/20 uppercase tracking-wide">
                   Tier 03 · 16' × 32'
                 </span>
-
 </div>
-<!-- Overlaid Bottom Pricing Band on Image -->
-<div class="absolute bottom-4 left-5 right-5 flex items-end justify-between">
+<div class="absolute bottom-3 left-4 right-4 sm:bottom-4 sm:left-5 sm:right-5 flex flex-wrap items-end justify-between gap-x-3 gap-y-1">
 <div>
-<div class="text-[11px] font-bold uppercase tracking-wider text-orange-300">Turnkey Total</div>
-<div class="text-3xl sm:text-4xl 3xl:text-5xl font-headline font-extrabold text-white tracking-tight leading-none">$94,995</div>
+<div class="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-orange-300">Turnkey Total</div>
+<div class="text-[30px] sm:text-4xl 3xl:text-5xl font-headline font-extrabold text-white tracking-tight leading-none">$94,995</div>
 </div>
-<div class="text-right">
-<div class="text-[11px] font-medium text-gray-300">Est. Financing</div>
-<div class="text-sm font-bold text-white bg-white/20 backdrop-blur-md px-2.5 py-1 rounded-lg">$635 / month</div>
+<div class="text-left sm:text-right">
+<div class="text-[10px] sm:text-[11px] font-medium text-gray-300">Est. Financing</div>
+<div class="text-xs sm:text-sm font-bold text-white bg-white/20 backdrop-blur-md px-2.5 py-1 rounded-lg whitespace-nowrap">$635 / month</div>
 </div>
 </div>
 </div>
-<!-- Content Specs -->
-<div class="p-6 sm:p-7">
-<h3 class="font-headline text-2xl font-bold text-navy-dark mb-1">Family &amp; Entertainer</h3>
-<p class="text-xs sm:text-sm text-body-slate mb-5">Spacious lap depth, perimeter bench, and deep spa.</p>
-<!-- Inclusions Grid -->
+<div class="p-5 sm:p-7">
+<h3 class="font-headline text-xl sm:text-2xl font-bold text-navy-dark mb-1">Family &amp; Entertainer</h3>
+<p class="text-xs sm:text-sm text-body-slate mb-4 sm:mb-5">Spacious lap depth, perimeter bench, and deep spa.</p>
 <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-4 border-t border-gray-100 text-xs text-body-slate">
-<div class="flex items-center gap-2 bg-stone-bg/80 p-2.5 rounded-xl border border-gray-100">
-<span class="material-symbols-outlined text-emerald-600 text-base">check_circle</span>
+<div class="flex items-start gap-2 bg-stone-bg/80 p-2.5 rounded-xl border border-gray-100">
+<span class="material-symbols-outlined text-emerald-600 text-base shrink-0">check_circle</span>
 <span class=""><strong>Oversized 8-Person Luxury Spa</strong> with high-flow jets</span>
 </div>
-<div class="flex items-center gap-2 bg-stone-bg/80 p-2.5 rounded-xl border border-gray-100">
-<span class="material-symbols-outlined text-emerald-600 text-base">check_circle</span>
+<div class="flex items-start gap-2 bg-stone-bg/80 p-2.5 rounded-xl border border-gray-100">
+<span class="material-symbols-outlined text-emerald-600 text-base shrink-0">check_circle</span>
 <span class="">Dedicated salt chlorination sanitation cell</span>
 </div>
-<div class="flex items-center gap-2 bg-stone-bg/80 p-2.5 rounded-xl border border-gray-100">
-<span class="material-symbols-outlined text-emerald-600 text-base">check_circle</span>
+<div class="flex items-start gap-2 bg-stone-bg/80 p-2.5 rounded-xl border border-gray-100">
+<span class="material-symbols-outlined text-emerald-600 text-base shrink-0">check_circle</span>
 <span class="">Dual multi-color LED architectural lights</span>
 </div>
-<div class="flex items-center gap-2 bg-stone-bg/80 p-2.5 rounded-xl border border-gray-100">
-<span class="material-symbols-outlined text-emerald-600 text-base">check_circle</span>
+<div class="flex items-start gap-2 bg-stone-bg/80 p-2.5 rounded-xl border border-gray-100">
+<span class="material-symbols-outlined text-emerald-600 text-base shrink-0">check_circle</span>
 <span class="">Travertine or poured coping perimeter up to 110 LF</span>
 </div>
 </div>
 </div>
 </div>
-<div class="p-6 sm:p-7 pt-0">
+<div class="p-5 sm:p-7 pt-0">
 <a class="block w-full py-3.5 px-6 rounded-xl font-headline font-bold text-center text-white bg-accent hover:bg-accent-hover transition-all shadow-sm cursor-pointer" href="#consultation">
               Customize This Package
             </a>
 </div>
 </div>
 <!-- CARD 4: Tier 04 (18' x 36' Estate Grand) -->
-<div class="w-[90vw] sm:w-[500px] lg:w-[560px] 3xl:w-[548px] shrink-0 bg-white border border-gray-200 rounded-3xl overflow-hidden shadow-md hover:shadow-xl transition-all flex flex-col justify-between snap-start group">
+<div class="w-[88vw] max-w-[420px] sm:w-[500px] sm:max-w-none lg:w-[560px] 3xl:w-[548px] shrink-0 bg-white border border-gray-200 rounded-2xl sm:rounded-3xl overflow-hidden shadow-md hover:shadow-xl transition-all flex flex-col justify-between snap-start group">
 <div>
-<!-- Wide Panoramic Visual -->
-<div class="relative h-[270px] sm:h-[300px] w-full overflow-hidden bg-navy-dark">
+<div class="relative h-[220px] sm:h-[300px] w-full overflow-hidden bg-navy-dark">
 <img alt="Tier 04 18x36 Estate Grand Custom Pool and Spa" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" src="https://aarongabriel29.github.io/Hansen-mock-up/images/images/o%20(9).jpg">
 <div class="absolute inset-0 bg-gradient-to-t from-navy-dark/90 via-navy-dark/20 to-transparent"></div>
-<div class="absolute top-4 left-4 flex items-center gap-2">
-<span class="bg-navy-dark/90 backdrop-blur-md text-white text-xs font-headline font-bold px-3.5 py-1.5 rounded-full border border-white/20 uppercase tracking-wide">
+<div class="absolute top-3 left-3 sm:top-4 sm:left-4 flex items-center gap-2">
+<span class="bg-navy-dark/90 backdrop-blur-md text-white text-[10px] sm:text-xs font-headline font-bold px-3 sm:px-3.5 py-1.5 rounded-full border border-white/20 uppercase tracking-wide">
                   Tier 04 · 18' × 36'
                 </span>
-
 </div>
-<!-- Overlaid Bottom Pricing Band on Image -->
-<div class="absolute bottom-4 left-5 right-5 flex items-end justify-between">
+<div class="absolute bottom-3 left-4 right-4 sm:bottom-4 sm:left-5 sm:right-5 flex flex-wrap items-end justify-between gap-x-3 gap-y-1">
 <div>
-<div class="text-[11px] font-bold uppercase tracking-wider text-orange-300">Turnkey Total</div>
-<div class="text-3xl sm:text-4xl 3xl:text-5xl font-headline font-extrabold text-white tracking-tight leading-none">$124,995</div>
+<div class="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-orange-300">Turnkey Total</div>
+<div class="text-[30px] sm:text-4xl 3xl:text-5xl font-headline font-extrabold text-white tracking-tight leading-none">$124,995</div>
 </div>
-<div class="text-right">
-<div class="text-[11px] font-medium text-gray-300">Est. Financing</div>
-<div class="text-sm font-bold text-white bg-white/20 backdrop-blur-md px-2.5 py-1 rounded-lg">$830 / month</div>
+<div class="text-left sm:text-right">
+<div class="text-[10px] sm:text-[11px] font-medium text-gray-300">Est. Financing</div>
+<div class="text-xs sm:text-sm font-bold text-white bg-white/20 backdrop-blur-md px-2.5 py-1 rounded-lg whitespace-nowrap">$830 / month</div>
 </div>
 </div>
 </div>
-<!-- Content Specs -->
-<div class="p-6 sm:p-7">
-<h3 class="font-headline text-2xl font-bold text-navy-dark mb-1">Estate Grand</h3>
-<p class="text-xs sm:text-sm text-body-slate mb-5">Bespoke estate scale with tiered water lounge and dual heaters.</p>
-<!-- Inclusions Grid -->
+<div class="p-5 sm:p-7">
+<h3 class="font-headline text-xl sm:text-2xl font-bold text-navy-dark mb-1">Estate Grand</h3>
+<p class="text-xs sm:text-sm text-body-slate mb-4 sm:mb-5">Bespoke estate scale with tiered water lounge and dual heaters.</p>
 <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-4 border-t border-gray-100 text-xs text-body-slate">
-<div class="flex items-center gap-2 bg-stone-bg/80 p-2.5 rounded-xl border border-gray-100">
-<span class="material-symbols-outlined text-emerald-600 text-base">check_circle</span>
+<div class="flex items-start gap-2 bg-stone-bg/80 p-2.5 rounded-xl border border-gray-100">
+<span class="material-symbols-outlined text-emerald-600 text-base shrink-0">check_circle</span>
 <span class=""><strong>10-Person Custom Spa</strong> with hydro-massage therapy</span>
 </div>
-<div class="flex items-center gap-2 bg-stone-bg/80 p-2.5 rounded-xl border border-gray-100">
-<span class="material-symbols-outlined text-emerald-600 text-base">check_circle</span>
+<div class="flex items-start gap-2 bg-stone-bg/80 p-2.5 rounded-xl border border-gray-100">
+<span class="material-symbols-outlined text-emerald-600 text-base shrink-0">check_circle</span>
 <span class="">Full 2-inch commercial plumbing manifold</span>
 </div>
-<div class="flex items-center gap-2 bg-stone-bg/80 p-2.5 rounded-xl border border-gray-100">
-<span class="material-symbols-outlined text-emerald-600 text-base">check_circle</span>
+<div class="flex items-start gap-2 bg-stone-bg/80 p-2.5 rounded-xl border border-gray-100">
+<span class="material-symbols-outlined text-emerald-600 text-base shrink-0">check_circle</span>
 <span class="">400k BTU high-efficiency low-NOx pool/spa heater</span>
 </div>
-<div class="flex items-center gap-2 bg-stone-bg/80 p-2.5 rounded-xl border border-gray-100">
-<span class="material-symbols-outlined text-emerald-600 text-base">check_circle</span>
+<div class="flex items-start gap-2 bg-stone-bg/80 p-2.5 rounded-xl border border-gray-100">
+<span class="material-symbols-outlined text-emerald-600 text-base shrink-0">check_circle</span>
 <span class="">Engineered retaining bond beam integration</span>
 </div>
 </div>
 </div>
 </div>
-<div class="p-6 sm:p-7 pt-0">
+<div class="p-5 sm:p-7 pt-0">
 <a class="block w-full py-3.5 px-6 rounded-xl font-headline font-bold text-center text-white bg-accent hover:bg-accent-hover transition-all shadow-sm cursor-pointer" href="#consultation">
               Customize This Package
             </a>
 </div>
 </div>
 </div>
-<!-- Modul Pools Interactive Horizontal Pagination Dots -->
-<div class="flex items-center justify-center gap-2 mt-4" id="modul-dots">
-<span class="w-2 h-2 rounded-full bg-gray-300 transition-all duration-300"></span>
+<!-- Pagination Dots + swipe hint -->
+<div class="flex items-center justify-center gap-2 mt-2 sm:mt-4" id="modul-dots">
 <span class="w-8 h-2 rounded-full bg-navy-dark transition-all duration-300"></span>
 <span class="w-2 h-2 rounded-full bg-gray-300 transition-all duration-300"></span>
 <span class="w-2 h-2 rounded-full bg-gray-300 transition-all duration-300"></span>
+<span class="w-2 h-2 rounded-full bg-gray-300 transition-all duration-300"></span>
 </div>
+<p class="text-center text-[11px] text-gray-500 mt-3 sm:hidden">Swipe to compare all four tiers</p>
 <!-- Transparent Custom Footnote -->
-<div class="mt-8 text-center max-w-2xl mx-auto p-4 rounded-2xl bg-white border border-gray-200 text-xs text-body-slate">
+<div class="mt-6 sm:mt-8 text-center max-w-2xl mx-auto p-4 rounded-2xl bg-white border border-gray-200 text-[11px] sm:text-xs text-body-slate leading-relaxed">
 <span class="font-bold text-navy-dark">Looking for custom bespoke dimensions or sloped hillside retaining?</span>
         Explore our Estate Grand 18' x 36' at $124,995 or schedule a direct builder consultation.
       </div>
 </div>
 </section>
-<!-- SECTION 4: WHAT COMES STANDARD WITH EVERY BUILD (COMPARISON TABLE) -->
-<section class="py-20 sm:py-28 3xl:py-32 bg-white border-b border-gray-200" id="inclusions">
+<!-- SECTION 4: WHAT COMES STANDARD (COMPARISON TABLE) -->
+<section class="py-14 sm:py-24 3xl:py-32 bg-white border-b border-gray-200" id="inclusions">
 <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 2xl:px-10 3xl:px-12">
-<div class="text-center max-w-3xl mx-auto mb-14">
-<div class="inline-flex items-center gap-2 text-primary font-headline font-bold text-xs uppercase tracking-widest mb-2">
+<div class="text-center max-w-3xl mx-auto mb-10 sm:mb-14">
+<div class="inline-flex items-center gap-2 text-primary font-headline font-bold text-[10px] sm:text-xs uppercase tracking-widest mb-2">
 <span class="w-6 h-[2px] bg-primary"></span>
 <span class="">Uncompromising Build Quality</span>
 </div>
-<h2 class="font-headline text-3xl sm:text-4xl 3xl:text-5xl font-extrabold text-navy-dark">
+<h2 class="font-headline text-[28px] sm:text-4xl 3xl:text-5xl font-extrabold text-navy-dark leading-[1.15]">
           What Comes Standard with Every Hansen Build
         </h2>
-<p class="text-base text-body-slate mt-3">
+<p class="text-[15px] sm:text-base text-body-slate mt-3">
           Compare our baseline specifications against typical California pool builders. We don't quote teaser rates and surprise you with basic structural necessities.
         </p>
 </div>
-<!-- Comparison Table Card -->
+<!-- Comparison Table Card: table on desktop, stacked cards on phones -->
 <div class="bg-white rounded-2xl border border-gray-200 shadow-md overflow-hidden">
-<div class="grid grid-cols-12 bg-stone-bg border-b border-gray-200 p-4 sm:p-5 3xl:p-6 font-headline font-bold text-xs sm:text-sm">
+<div class="hidden md:grid grid-cols-12 bg-stone-bg border-b border-gray-200 p-5 3xl:p-6 font-headline font-bold text-sm">
 <div class="col-span-6 text-navy-dark uppercase tracking-wider">Specifications &amp; Features</div>
 <div class="col-span-3 text-center text-primary font-extrabold uppercase tracking-wider">Hansen Standard</div>
 <div class="col-span-3 text-center text-gray-400 uppercase tracking-wider">Typical Contractor</div>
 </div>
 <div class="divide-y divide-gray-100 text-xs sm:text-sm 3xl:text-base">
-<div class="grid grid-cols-12 p-4 sm:p-5 3xl:p-6 items-center hover:bg-stone-bg/50 transition-colors">
-<div class="col-span-6 font-semibold text-slate-ink">
+<!-- Row 1 -->
+<div class="p-4 sm:p-5 3xl:p-6 hover:bg-stone-bg/50 transition-colors md:grid md:grid-cols-12 md:items-center">
+<div class="md:col-span-6 font-semibold text-slate-ink text-[14px] sm:text-sm leading-snug">
               In-Ground Custom Hydrotherapy Spa
-              <span class="block text-xs font-normal text-gray-500 mt-0.5">Dedicated heater &amp; high-flow massage jets</span>
+              <span class="block text-[11px] sm:text-xs font-normal text-gray-500 mt-0.5">Dedicated heater &amp; high-flow massage jets</span>
 </div>
-<div class="col-span-3 flex justify-center items-center text-navy-deep font-bold">
-<span class="material-symbols-outlined text-emerald-600 text-lg mr-1.5">check_circle</span>
-<span class="">Included Standard</span>
+<div class="grid grid-cols-2 gap-2.5 mt-3 md:mt-0 md:contents">
+<div class="md:col-span-3 rounded-lg bg-emerald-50/70 md:bg-transparent px-2 py-2.5 md:p-0 text-center">
+<div class="md:hidden text-[9px] font-bold uppercase tracking-wider text-gray-500 mb-1">Hansen</div>
+<div class="flex justify-center items-center text-navy-deep font-bold text-[12px] sm:text-sm"><span class="material-symbols-outlined text-emerald-600 text-[17px] sm:text-lg mr-1">check_circle</span><span>Included Standard</span></div>
 </div>
-<div class="col-span-3 text-center text-gray-500 font-medium">$25,000+ upgrade</div>
+<div class="md:col-span-3 rounded-lg bg-gray-100/70 md:bg-transparent px-2 py-2.5 md:p-0 text-center">
+<div class="md:hidden text-[9px] font-bold uppercase tracking-wider text-gray-400 mb-1">Typical</div>
+<div class="text-gray-500 font-medium text-[12px] sm:text-sm">$25,000+ upgrade</div>
 </div>
-<div class="grid grid-cols-12 p-4 sm:p-5 3xl:p-6 items-center bg-stone-bg/40 hover:bg-stone-bg transition-colors">
-<div class="col-span-6 font-semibold text-slate-ink">
+</div>
+</div>
+<!-- Row 2 -->
+<div class="p-4 sm:p-5 3xl:p-6 bg-stone-bg/40 hover:bg-stone-bg transition-colors md:grid md:grid-cols-12 md:items-center">
+<div class="md:col-span-6 font-semibold text-slate-ink text-[14px] sm:text-sm leading-snug">
               Complete Soil Excavation &amp; Haul-Off
-              <span class="block text-xs font-normal text-gray-500 mt-0.5">Disposal fees, mini-excavation, street permits</span>
+              <span class="block text-[11px] sm:text-xs font-normal text-gray-500 mt-0.5">Disposal fees, mini-excavation, street permits</span>
 </div>
-<div class="col-span-3 flex justify-center items-center text-navy-deep font-bold">
-<span class="material-symbols-outlined text-emerald-600 text-lg mr-1.5">check_circle</span>
-<span class="">Included 100%</span>
+<div class="grid grid-cols-2 gap-2.5 mt-3 md:mt-0 md:contents">
+<div class="md:col-span-3 rounded-lg bg-emerald-50/70 md:bg-transparent px-2 py-2.5 md:p-0 text-center">
+<div class="md:hidden text-[9px] font-bold uppercase tracking-wider text-gray-500 mb-1">Hansen</div>
+<div class="flex justify-center items-center text-navy-deep font-bold text-[12px] sm:text-sm"><span class="material-symbols-outlined text-emerald-600 text-[17px] sm:text-lg mr-1">check_circle</span><span>Included 100%</span></div>
 </div>
-<div class="col-span-3 text-center text-gray-500 font-medium">$5,000+ extra billable</div>
+<div class="md:col-span-3 rounded-lg bg-gray-100/70 md:bg-transparent px-2 py-2.5 md:p-0 text-center">
+<div class="md:hidden text-[9px] font-bold uppercase tracking-wider text-gray-400 mb-1">Typical</div>
+<div class="text-gray-500 font-medium text-[12px] sm:text-sm">$5,000+ extra billable</div>
 </div>
-<div class="grid grid-cols-12 p-4 sm:p-5 3xl:p-6 items-center hover:bg-stone-bg/50 transition-colors">
-<div class="col-span-6 font-semibold text-slate-ink">
+</div>
+</div>
+<!-- Row 3 -->
+<div class="p-4 sm:p-5 3xl:p-6 hover:bg-stone-bg/50 transition-colors md:grid md:grid-cols-12 md:items-center">
+<div class="md:col-span-6 font-semibold text-slate-ink text-[14px] sm:text-sm leading-snug">
               Structural Shell Strength
-              <span class="block text-xs font-normal text-gray-500 mt-0.5">Compressive PSI pneumatic concrete mix</span>
+              <span class="block text-[11px] sm:text-xs font-normal text-gray-500 mt-0.5">Compressive PSI pneumatic concrete mix</span>
 </div>
-<div class="col-span-3 flex justify-center items-center text-navy-deep font-bold">
-<span class="material-symbols-outlined text-emerald-600 text-lg mr-1.5">check_circle</span>
-<span class="">4,500 PSI Shotcrete</span>
+<div class="grid grid-cols-2 gap-2.5 mt-3 md:mt-0 md:contents">
+<div class="md:col-span-3 rounded-lg bg-emerald-50/70 md:bg-transparent px-2 py-2.5 md:p-0 text-center">
+<div class="md:hidden text-[9px] font-bold uppercase tracking-wider text-gray-500 mb-1">Hansen</div>
+<div class="flex justify-center items-center text-navy-deep font-bold text-[12px] sm:text-sm"><span class="material-symbols-outlined text-emerald-600 text-[17px] sm:text-lg mr-1">check_circle</span><span>4,500 PSI Shotcrete</span></div>
 </div>
-<div class="col-span-3 text-center text-gray-500 font-medium">2,500 PSI Dry Gunite</div>
+<div class="md:col-span-3 rounded-lg bg-gray-100/70 md:bg-transparent px-2 py-2.5 md:p-0 text-center">
+<div class="md:hidden text-[9px] font-bold uppercase tracking-wider text-gray-400 mb-1">Typical</div>
+<div class="text-gray-500 font-medium text-[12px] sm:text-sm">2,500 PSI Dry Gunite</div>
 </div>
-<div class="grid grid-cols-12 p-4 sm:p-5 3xl:p-6 items-center bg-stone-bg/40 hover:bg-stone-bg transition-colors">
-<div class="col-span-6 font-semibold text-slate-ink">
+</div>
+</div>
+<!-- Row 4 -->
+<div class="p-4 sm:p-5 3xl:p-6 bg-stone-bg/40 hover:bg-stone-bg transition-colors md:grid md:grid-cols-12 md:items-center">
+<div class="md:col-span-6 font-semibold text-slate-ink text-[14px] sm:text-sm leading-snug">
               Submerged Baja Tanning Shelf
-              <span class="block text-xs font-normal text-gray-500 mt-0.5">Shallow lounge deck with umbrella sleeve</span>
+              <span class="block text-[11px] sm:text-xs font-normal text-gray-500 mt-0.5">Shallow lounge deck with umbrella sleeve</span>
 </div>
-<div class="col-span-3 flex justify-center items-center text-navy-deep font-bold">
-<span class="material-symbols-outlined text-emerald-600 text-lg mr-1.5">check_circle</span>
-<span class="">Included on Tiers 2-4</span>
+<div class="grid grid-cols-2 gap-2.5 mt-3 md:mt-0 md:contents">
+<div class="md:col-span-3 rounded-lg bg-emerald-50/70 md:bg-transparent px-2 py-2.5 md:p-0 text-center">
+<div class="md:hidden text-[9px] font-bold uppercase tracking-wider text-gray-500 mb-1">Hansen</div>
+<div class="flex justify-center items-center text-navy-deep font-bold text-[12px] sm:text-sm"><span class="material-symbols-outlined text-emerald-600 text-[17px] sm:text-lg mr-1">check_circle</span><span>Tiers 2 to 4</span></div>
 </div>
-<div class="col-span-3 text-center text-gray-500 font-medium">$3,000 to $4,500 extra</div>
+<div class="md:col-span-3 rounded-lg bg-gray-100/70 md:bg-transparent px-2 py-2.5 md:p-0 text-center">
+<div class="md:hidden text-[9px] font-bold uppercase tracking-wider text-gray-400 mb-1">Typical</div>
+<div class="text-gray-500 font-medium text-[12px] sm:text-sm">$3,000 to $4,500 extra</div>
 </div>
-<div class="grid grid-cols-12 p-4 sm:p-5 3xl:p-6 items-center hover:bg-stone-bg/50 transition-colors">
-<div class="col-span-6 font-semibold text-slate-ink">
+</div>
+</div>
+<!-- Row 5 -->
+<div class="p-4 sm:p-5 3xl:p-6 hover:bg-stone-bg/50 transition-colors md:grid md:grid-cols-12 md:items-center">
+<div class="md:col-span-6 font-semibold text-slate-ink text-[14px] sm:text-sm leading-snug">
               Hydraulic Plumbing Diameter
-              <span class="block text-xs font-normal text-gray-500 mt-0.5">Prevents pipe restriction &amp; lowers electric bill</span>
+              <span class="block text-[11px] sm:text-xs font-normal text-gray-500 mt-0.5">Prevents pipe restriction &amp; lowers electric bill</span>
 </div>
-<div class="col-span-3 flex justify-center items-center text-navy-deep font-bold">
-<span class="material-symbols-outlined text-emerald-600 text-lg mr-1.5">check_circle</span>
-<span class="">2-Inch Continuous</span>
+<div class="grid grid-cols-2 gap-2.5 mt-3 md:mt-0 md:contents">
+<div class="md:col-span-3 rounded-lg bg-emerald-50/70 md:bg-transparent px-2 py-2.5 md:p-0 text-center">
+<div class="md:hidden text-[9px] font-bold uppercase tracking-wider text-gray-500 mb-1">Hansen</div>
+<div class="flex justify-center items-center text-navy-deep font-bold text-[12px] sm:text-sm"><span class="material-symbols-outlined text-emerald-600 text-[17px] sm:text-lg mr-1">check_circle</span><span>2-Inch Continuous</span></div>
 </div>
-<div class="col-span-3 text-center text-gray-500 font-medium">1.5-Inch Restricted</div>
+<div class="md:col-span-3 rounded-lg bg-gray-100/70 md:bg-transparent px-2 py-2.5 md:p-0 text-center">
+<div class="md:hidden text-[9px] font-bold uppercase tracking-wider text-gray-400 mb-1">Typical</div>
+<div class="text-gray-500 font-medium text-[12px] sm:text-sm">1.5-Inch Restricted</div>
 </div>
-<div class="grid grid-cols-12 p-4 sm:p-5 3xl:p-6 items-center bg-stone-bg/40 hover:bg-stone-bg transition-colors">
-<div class="col-span-6 font-semibold text-slate-ink">
+</div>
+</div>
+<!-- Row 6 -->
+<div class="p-4 sm:p-5 3xl:p-6 bg-stone-bg/40 hover:bg-stone-bg transition-colors md:grid md:grid-cols-12 md:items-center">
+<div class="md:col-span-6 font-semibold text-slate-ink text-[14px] sm:text-sm leading-snug">
               Smart Phone Automation Hub
-              <span class="block text-xs font-normal text-gray-500 mt-0.5">Control heater, lights, and jets anywhere</span>
+              <span class="block text-[11px] sm:text-xs font-normal text-gray-500 mt-0.5">Control heater, lights, and jets anywhere</span>
 </div>
-<div class="col-span-3 flex justify-center items-center text-navy-deep font-bold">
-<span class="material-symbols-outlined text-emerald-600 text-lg mr-1.5">check_circle</span>
-<span class="">Pentair IntelliConnect</span>
+<div class="grid grid-cols-2 gap-2.5 mt-3 md:mt-0 md:contents">
+<div class="md:col-span-3 rounded-lg bg-emerald-50/70 md:bg-transparent px-2 py-2.5 md:p-0 text-center">
+<div class="md:hidden text-[9px] font-bold uppercase tracking-wider text-gray-500 mb-1">Hansen</div>
+<div class="flex justify-center items-center text-navy-deep font-bold text-[12px] sm:text-sm"><span class="material-symbols-outlined text-emerald-600 text-[17px] sm:text-lg mr-1">check_circle</span><span>Pentair IntelliConnect</span></div>
 </div>
-<div class="col-span-3 text-center text-gray-500 font-medium">Manual Wall Switches</div>
+<div class="md:col-span-3 rounded-lg bg-gray-100/70 md:bg-transparent px-2 py-2.5 md:p-0 text-center">
+<div class="md:hidden text-[9px] font-bold uppercase tracking-wider text-gray-400 mb-1">Typical</div>
+<div class="text-gray-500 font-medium text-[12px] sm:text-sm">Manual Wall Switches</div>
 </div>
-<div class="grid grid-cols-12 p-4 sm:p-5 3xl:p-6 items-center hover:bg-stone-bg/50 transition-colors">
-<div class="col-span-6 font-semibold text-slate-ink">
+</div>
+</div>
+<!-- Row 7 -->
+<div class="p-4 sm:p-5 3xl:p-6 hover:bg-stone-bg/50 transition-colors md:grid md:grid-cols-12 md:items-center">
+<div class="md:col-span-6 font-semibold text-slate-ink text-[14px] sm:text-sm leading-snug">
               On-Site Direct Owner Supervision
-              <span class="block text-xs font-normal text-gray-500 mt-0.5">Active licensed builder runs shoot &amp; steel days</span>
+              <span class="block text-[11px] sm:text-xs font-normal text-gray-500 mt-0.5">Active licensed builder runs shoot &amp; steel days</span>
 </div>
-<div class="col-span-3 flex justify-center items-center text-navy-deep font-bold">
-<span class="material-symbols-outlined text-emerald-600 text-lg mr-1.5">check_circle</span>
-<span class="">Guaranteed Direct</span>
+<div class="grid grid-cols-2 gap-2.5 mt-3 md:mt-0 md:contents">
+<div class="md:col-span-3 rounded-lg bg-emerald-50/70 md:bg-transparent px-2 py-2.5 md:p-0 text-center">
+<div class="md:hidden text-[9px] font-bold uppercase tracking-wider text-gray-500 mb-1">Hansen</div>
+<div class="flex justify-center items-center text-navy-deep font-bold text-[12px] sm:text-sm"><span class="material-symbols-outlined text-emerald-600 text-[17px] sm:text-lg mr-1">check_circle</span><span>Guaranteed Direct</span></div>
 </div>
-<div class="col-span-3 text-center text-gray-500 font-medium">Subcontractors Only</div>
+<div class="md:col-span-3 rounded-lg bg-gray-100/70 md:bg-transparent px-2 py-2.5 md:p-0 text-center">
+<div class="md:hidden text-[9px] font-bold uppercase tracking-wider text-gray-400 mb-1">Typical</div>
+<div class="text-gray-500 font-medium text-[12px] sm:text-sm">Subcontractors Only</div>
+</div>
+</div>
 </div>
 </div>
 </div>
 </div>
 </section>
 <!-- SECTION 5: POPULAR ADD-ON OPTIONS -->
-<section class="py-20 sm:py-28 3xl:py-32 bg-stone-bg border-b border-gray-200" id="addons">
+<section class="py-14 sm:py-24 3xl:py-32 bg-stone-bg border-b border-gray-200" id="addons">
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 2xl:px-10 3xl:px-12">
-<div class="text-center max-w-2xl mx-auto mb-14">
-<div class="inline-flex items-center gap-2 text-accent font-headline font-bold text-xs uppercase tracking-widest mb-2">
+<div class="text-center max-w-2xl mx-auto mb-10 sm:mb-14">
+<div class="inline-flex items-center gap-2 text-accent font-headline font-bold text-[10px] sm:text-xs uppercase tracking-widest mb-2">
 <span class="w-6 h-[2px] bg-accent"></span>
 <span class="">Custom Enhancements</span>
 </div>
-<h2 class="font-headline text-3xl sm:text-4xl 3xl:text-5xl font-extrabold text-navy-dark">
+<h2 class="font-headline text-[28px] sm:text-4xl 3xl:text-5xl font-extrabold text-navy-dark leading-[1.15]">
           Popular Add-On Options
         </h2>
-<p class="text-base text-body-slate mt-2">
+<p class="text-[15px] sm:text-base text-body-slate mt-2">
           Personalize your build with engineered features proven across Ventura County microclimates.
         </p>
 </div>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-8 3xl:gap-10">
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-8 3xl:gap-10">
 <!-- Add-on 1 -->
 <div class="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all flex flex-col justify-between">
 <div>
-<div class="h-52 w-full overflow-hidden">
+<div class="h-44 sm:h-52 w-full overflow-hidden">
 <img alt="Automatic safety cover installation" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" src="https://aarongabriel29.github.io/Hansen-mock-up/images/images/o%20(1).jpg">
 </div>
-<div class="p-6">
-<div class="flex justify-between items-baseline mb-2">
+<div class="p-5 sm:p-6">
+<div class="flex flex-wrap justify-between items-baseline gap-2 mb-2">
 <h3 class="font-headline text-lg font-bold text-navy-dark">Automatic Safety Cover</h3>
 <span class="font-headline text-lg font-extrabold text-primary">$16,500</span>
 </div>
-<p class="text-xs sm:text-sm text-body-slate leading-relaxed">
+<p class="text-[13px] sm:text-sm text-body-slate leading-relaxed">
                 Under-track recessed motorized cover providing child safety peace of mind and up to 85% thermal heat retention in cool canyon evenings.
               </p>
 </div>
 </div>
-<div class="p-6 pt-0">
+<div class="p-5 sm:p-6 pt-0">
 <a class="block w-full py-3 text-center rounded-xl border-2 border-primary text-primary hover:bg-primary hover:text-white font-headline font-bold text-sm transition-colors cursor-pointer" href="#consultation">
               Add to My Design
             </a>
@@ -629,42 +695,42 @@
 <!-- Add-on 2 -->
 <div class="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all flex flex-col justify-between">
 <div>
-<div class="h-52 w-full overflow-hidden">
+<div class="h-44 sm:h-52 w-full overflow-hidden">
 <img alt="Raised Spa with Sheet Waterfall" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" src="https://aarongabriel29.github.io/Hansen-mock-up/images/images/o%20(6).jpg">
 </div>
-<div class="p-6">
-<div class="flex justify-between items-baseline mb-2">
+<div class="p-5 sm:p-6">
+<div class="flex flex-wrap justify-between items-baseline gap-2 mb-2">
 <h3 class="font-headline text-lg font-bold text-navy-dark">Raised Spa &amp; Sheet Waterfall</h3>
 <span class="font-headline text-lg font-extrabold text-primary">$8,500</span>
 </div>
-<p class="text-xs sm:text-sm text-body-slate leading-relaxed">
+<p class="text-[13px] sm:text-sm text-body-slate leading-relaxed">
                 18-inch elevated travertine or stacked-stone bond beam wall with architectural sheer-descent water spillway for soothing ambient sound.
               </p>
 </div>
 </div>
-<div class="p-6 pt-0">
+<div class="p-5 sm:p-6 pt-0">
 <a class="block w-full py-3 text-center rounded-xl border-2 border-primary text-primary hover:bg-primary hover:text-white font-headline font-bold text-sm transition-colors cursor-pointer" href="#consultation">
               Add to My Design
             </a>
 </div>
 </div>
 <!-- Add-on 3 -->
-<div class="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all flex flex-col justify-between">
+<div class="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all flex flex-col justify-between sm:col-span-2 lg:col-span-1">
 <div>
-<div class="h-52 w-full overflow-hidden">
+<div class="h-44 sm:h-52 w-full overflow-hidden">
 <img alt="Automated Fire Bowls Pair" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" src="https://aarongabriel29.github.io/Hansen-mock-up/images/images/o%20(4).jpg">
 </div>
-<div class="p-6">
-<div class="flex justify-between items-baseline mb-2">
+<div class="p-5 sm:p-6">
+<div class="flex flex-wrap justify-between items-baseline gap-2 mb-2">
 <h3 class="font-headline text-lg font-bold text-navy-dark">Automated Fire Bowls Pair</h3>
 <span class="font-headline text-lg font-extrabold text-primary">$4,200</span>
 </div>
-<p class="text-xs sm:text-sm text-body-slate leading-relaxed">
+<p class="text-[13px] sm:text-sm text-body-slate leading-relaxed">
                 Dual cast-concrete gas fire bowls with electronic spark ignition, volcanic glass media, and automated switch operation.
               </p>
 </div>
 </div>
-<div class="p-6 pt-0">
+<div class="p-5 sm:p-6 pt-0">
 <a class="block w-full py-3 text-center rounded-xl border-2 border-primary text-primary hover:bg-primary hover:text-white font-headline font-bold text-sm transition-colors cursor-pointer" href="#consultation">
               Add to My Design
             </a>
@@ -674,53 +740,53 @@
 </div>
 </section>
 <!-- 5-STAGE PROCESS SECTION -->
-<section class="py-20 sm:py-24 3xl:py-28 bg-white border-b border-gray-200" id="process">
+<section class="py-14 sm:py-24 3xl:py-28 bg-white border-b border-gray-200" id="process">
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 2xl:px-10 3xl:px-12">
-<div class="text-center max-w-3xl mx-auto mb-16">
-<div class="inline-flex items-center gap-2 text-primary font-headline font-bold text-xs uppercase tracking-widest mb-2">
+<div class="text-center max-w-3xl mx-auto mb-10 sm:mb-16">
+<div class="inline-flex items-center gap-2 text-primary font-headline font-bold text-[10px] sm:text-xs uppercase tracking-widest mb-2">
 <span class="w-6 h-[2px] bg-primary"></span>
 <span class="">The Hansen Build Journey</span>
 </div>
-<h2 class="font-headline text-3xl sm:text-4xl 3xl:text-5xl font-extrabold text-navy-dark">
+<h2 class="font-headline text-[28px] sm:text-4xl 3xl:text-5xl font-extrabold text-navy-dark leading-[1.15]">
           From Yard Survey to First Swim in 5 Disciplined Stages
         </h2>
 </div>
-<div class="grid grid-cols-1 md:grid-cols-5 gap-6 3xl:gap-8"><div class="p-6 rounded-2xl bg-stone-bg border border-gray-200 relative group hover:border-accent transition-all"><div class="flex items-center justify-between mb-4"><span class="font-headline text-3xl font-extrabold text-accent">01</span><span class="w-2 h-2 rounded-full bg-accent/40"></span></div><h4 class="font-headline font-bold text-base text-navy-dark mb-1">Laser Survey</h4><p class="text-xs text-body-slate leading-relaxed">Plotting boundaries, Ventura County setbacks, and laser hillside topography.</p></div><div class="p-6 rounded-2xl bg-stone-bg border border-gray-200 relative group hover:border-accent transition-all"><div class="flex items-center justify-between mb-4"><span class="font-headline text-3xl font-extrabold text-accent">02</span><span class="w-2 h-2 rounded-full bg-accent/40"></span></div><h4 class="font-headline font-bold text-base text-navy-dark mb-1">Excavation &amp; Steel</h4><p class="text-xs text-body-slate leading-relaxed">Precision digging, dense structural rebar grid, and certified soil inspections.</p></div><div class="p-6 rounded-2xl bg-stone-bg border border-gray-200 relative group hover:border-accent transition-all"><div class="flex items-center justify-between mb-4"><span class="font-headline text-3xl font-extrabold text-accent">03</span><span class="w-2 h-2 rounded-full bg-accent/40"></span></div><h4 class="font-headline font-bold text-base text-navy-dark mb-1">4,500 PSI Shotcrete</h4><p class="text-xs text-body-slate leading-relaxed">Pneumatic concrete shoot supervised directly on-site by the owners.</p></div><div class="p-6 rounded-2xl bg-stone-bg border border-gray-200 relative group hover:border-accent transition-all"><div class="flex items-center justify-between mb-4"><span class="font-headline text-3xl font-extrabold text-accent">04</span><span class="w-2 h-2 rounded-full bg-accent/40"></span></div><h4 class="font-headline font-bold text-base text-navy-dark mb-1">Plumbing &amp; Coping</h4><p class="text-xs text-body-slate leading-relaxed">2-inch continuous hydraulic manifold, Pentair pump systems, and coping.</p></div><div class="p-6 rounded-2xl bg-stone-bg border border-gray-200 relative group hover:border-accent transition-all"><div class="flex items-center justify-between mb-4"><span class="font-headline text-3xl font-extrabold text-accent">05</span><span class="w-2 h-2 rounded-full bg-accent/40"></span></div><h4 class="font-headline font-bold text-base text-navy-dark mb-1">Quartz Plaster &amp; Fill</h4><p class="text-xs text-body-slate leading-relaxed">Quartz aggregate hand trowel, balanced chemistry, and smart app startup.</p></div></div>
+<div class="grid grid-cols-2 lg:grid-cols-5 gap-3 sm:gap-6 3xl:gap-8"><div class="p-5 sm:p-6 rounded-2xl bg-stone-bg border border-gray-200 relative group hover:border-accent transition-all"><div class="flex items-center justify-between mb-3 sm:mb-4"><span class="font-headline text-2xl sm:text-3xl font-extrabold text-accent">01</span><span class="w-2 h-2 rounded-full bg-accent/40"></span></div><h4 class="font-headline font-bold text-[15px] sm:text-base text-navy-dark mb-1 leading-snug">Laser Survey</h4><p class="text-[11px] sm:text-xs text-body-slate leading-relaxed">Plotting boundaries, Ventura County setbacks, and laser hillside topography.</p></div><div class="p-5 sm:p-6 rounded-2xl bg-stone-bg border border-gray-200 relative group hover:border-accent transition-all"><div class="flex items-center justify-between mb-3 sm:mb-4"><span class="font-headline text-2xl sm:text-3xl font-extrabold text-accent">02</span><span class="w-2 h-2 rounded-full bg-accent/40"></span></div><h4 class="font-headline font-bold text-[15px] sm:text-base text-navy-dark mb-1 leading-snug">Excavation &amp; Steel</h4><p class="text-[11px] sm:text-xs text-body-slate leading-relaxed">Precision digging, dense structural rebar grid, and certified soil inspections.</p></div><div class="p-5 sm:p-6 rounded-2xl bg-stone-bg border border-gray-200 relative group hover:border-accent transition-all"><div class="flex items-center justify-between mb-3 sm:mb-4"><span class="font-headline text-2xl sm:text-3xl font-extrabold text-accent">03</span><span class="w-2 h-2 rounded-full bg-accent/40"></span></div><h4 class="font-headline font-bold text-[15px] sm:text-base text-navy-dark mb-1 leading-snug">4,500 PSI Shotcrete</h4><p class="text-[11px] sm:text-xs text-body-slate leading-relaxed">Pneumatic concrete shoot supervised directly on-site by the owners.</p></div><div class="p-5 sm:p-6 rounded-2xl bg-stone-bg border border-gray-200 relative group hover:border-accent transition-all"><div class="flex items-center justify-between mb-3 sm:mb-4"><span class="font-headline text-2xl sm:text-3xl font-extrabold text-accent">04</span><span class="w-2 h-2 rounded-full bg-accent/40"></span></div><h4 class="font-headline font-bold text-[15px] sm:text-base text-navy-dark mb-1 leading-snug">Plumbing &amp; Coping</h4><p class="text-[11px] sm:text-xs text-body-slate leading-relaxed">2-inch continuous hydraulic manifold, Pentair pump systems, and coping.</p></div><div class="p-5 sm:p-6 rounded-2xl bg-stone-bg border border-gray-200 relative group hover:border-accent transition-all col-span-2 lg:col-span-1"><div class="flex items-center justify-between mb-3 sm:mb-4"><span class="font-headline text-2xl sm:text-3xl font-extrabold text-accent">05</span><span class="w-2 h-2 rounded-full bg-accent/40"></span></div><h4 class="font-headline font-bold text-[15px] sm:text-base text-navy-dark mb-1 leading-snug">Quartz Plaster &amp; Fill</h4><p class="text-[11px] sm:text-xs text-body-slate leading-relaxed">Quartz aggregate hand trowel, balanced chemistry, and smart app startup.</p></div></div>
 </div>
 </section>
 <!-- SECTION 6: PORTFOLIO & REVIEWS -->
-<section class="py-20 sm:py-28 3xl:py-32 bg-stone-bg border-b border-gray-200" id="our-work">
+<section class="py-14 sm:py-24 3xl:py-32 bg-stone-bg border-b border-gray-200" id="our-work">
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 2xl:px-10 3xl:px-12">
-<div class="max-w-3xl mb-12">
-<div class="inline-flex items-center gap-2 text-primary font-headline font-bold text-xs uppercase tracking-widest mb-2">
+<div class="max-w-3xl mb-8 sm:mb-12">
+<div class="inline-flex items-center gap-2 text-primary font-headline font-bold text-[10px] sm:text-xs uppercase tracking-widest mb-2">
 <span class="w-6 h-[2px] bg-primary"></span>
 <span class="">Real Local Projects</span>
 </div>
-<h2 class="font-headline text-3xl sm:text-5xl 3xl:text-6xl font-extrabold text-navy-dark tracking-tight">
+<h2 class="font-headline text-[28px] sm:text-5xl 3xl:text-6xl font-extrabold text-navy-dark tracking-tight leading-[1.15]">
           Built for Ventura County Life.
         </h2>
-<p class="text-base sm:text-lg 3xl:text-xl text-body-slate mt-2">
+<p class="text-[15px] sm:text-lg 3xl:text-xl text-body-slate mt-2">
           Every build is engineered on site by the Hansen family. Here are recent completions across our home communities.
         </p>
 </div>
-<!-- 3-Column Portfolio Cards -->
-<div class="grid grid-cols-1 md:grid-cols-12 gap-8 3xl:gap-10 mb-20"><!-- Card 1: Thousand Oaks (Large Feature - Col Span 7) -->
-<a href="#our-work" class="md:col-span-7 bg-white rounded-3xl overflow-hidden border border-gray-200 shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col justify-between group hover:-translate-y-1 block">
-  <div class="relative h-[320px] sm:h-[400px] w-full overflow-hidden bg-navy-dark">
+<!-- Portfolio Cards -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-5 sm:gap-8 3xl:gap-10 mb-14 sm:mb-20"><!-- Card 1: Thousand Oaks -->
+<a href="#our-work" class="md:col-span-7 bg-white rounded-2xl sm:rounded-3xl overflow-hidden border border-gray-200 shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col justify-between group hover:-translate-y-1 block">
+  <div class="relative h-[240px] sm:h-[400px] w-full overflow-hidden bg-navy-dark">
     <img alt="Thousand Oaks Hillside Estate Terraced Pool" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" src="https://aarongabriel29.github.io/Hansen-mock-up/images/images/B71I8767.webp">
     <div class="absolute inset-0 bg-gradient-to-t from-navy-dark/85 via-transparent to-black/10"></div>
-    <div class="absolute top-4 left-4 flex items-center gap-2">
-      <span class="px-3 py-1 rounded-full text-xs font-headline font-bold uppercase tracking-wider bg-navy-dark/90 backdrop-blur-md text-white border border-white/20">Thousand Oaks</span>
-      <span class="px-2.5 py-1 rounded-full text-[11px] font-semibold bg-white/90 backdrop-blur-md text-navy-deep">Sloped Lot</span>
+    <div class="absolute top-3 left-3 sm:top-4 sm:left-4 flex flex-wrap items-center gap-2">
+      <span class="px-3 py-1 rounded-full text-[10px] sm:text-xs font-headline font-bold uppercase tracking-wider bg-navy-dark/90 backdrop-blur-md text-white border border-white/20">Thousand Oaks</span>
+      <span class="px-2.5 py-1 rounded-full text-[10px] sm:text-[11px] font-semibold bg-white/90 backdrop-blur-md text-navy-deep">Sloped Lot</span>
     </div>
-    <div class="absolute bottom-4 right-4 w-10 h-10 rounded-full bg-white/90 backdrop-blur-md text-navy-dark flex items-center justify-center shadow-md group-hover:bg-accent group-hover:text-white transition-all">
+    <div class="absolute bottom-3 right-3 sm:bottom-4 sm:right-4 w-10 h-10 rounded-full bg-white/90 backdrop-blur-md text-navy-dark flex items-center justify-center shadow-md group-hover:bg-accent group-hover:text-white transition-all">
       <span class="material-symbols-outlined text-xl">arrow_forward</span>
     </div>
   </div>
-  <div class="p-6 sm:p-8 flex items-center justify-between gap-4 bg-white">
+  <div class="p-5 sm:p-8 flex items-center justify-between gap-4 bg-white">
     <div>
-      <div class="text-xs font-bold text-accent uppercase tracking-wider mb-1">Hillside Engineering</div>
-      <h3 class="font-headline font-bold text-xl sm:text-2xl text-navy-dark group-hover:text-primary transition-colors">
+      <div class="text-[10px] sm:text-xs font-bold text-accent uppercase tracking-wider mb-1">Hillside Engineering</div>
+      <h3 class="font-headline font-bold text-lg sm:text-2xl text-navy-dark group-hover:text-primary transition-colors leading-snug">
         Terraced Hillside Spa &amp; Perimeter Pool
       </h3>
     </div>
@@ -731,23 +797,23 @@
   </div>
 </a>
 
-<!-- Card 2: Moorpark Estate (Col Span 5) -->
-<a href="#our-work" class="md:col-span-5 bg-white rounded-3xl overflow-hidden border border-gray-200 shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col justify-between group hover:-translate-y-1 block">
-  <div class="relative h-[320px] sm:h-[400px] w-full overflow-hidden bg-navy-dark">
+<!-- Card 2: Moorpark Estate -->
+<a href="#our-work" class="md:col-span-5 bg-white rounded-2xl sm:rounded-3xl overflow-hidden border border-gray-200 shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col justify-between group hover:-translate-y-1 block">
+  <div class="relative h-[240px] sm:h-[400px] w-full overflow-hidden bg-navy-dark">
     <img alt="Moorpark Estate Zero-Edge Cleanline with Fire Bowls" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" src="https://aarongabriel29.github.io/Hansen-mock-up/images/images/o%20(7).jpg">
     <div class="absolute inset-0 bg-gradient-to-t from-navy-dark/85 via-transparent to-black/10"></div>
-    <div class="absolute top-4 left-4 flex items-center gap-2">
-      <span class="px-3 py-1 rounded-full text-xs font-headline font-bold uppercase tracking-wider bg-orange-50 text-accent border border-orange-100">Moorpark</span>
-      <span class="px-2.5 py-1 rounded-full text-[11px] font-semibold bg-white/90 backdrop-blur-md text-navy-deep">Architectural</span>
+    <div class="absolute top-3 left-3 sm:top-4 sm:left-4 flex flex-wrap items-center gap-2">
+      <span class="px-3 py-1 rounded-full text-[10px] sm:text-xs font-headline font-bold uppercase tracking-wider bg-orange-50 text-accent border border-orange-100">Moorpark</span>
+      <span class="px-2.5 py-1 rounded-full text-[10px] sm:text-[11px] font-semibold bg-white/90 backdrop-blur-md text-navy-deep">Architectural</span>
     </div>
-    <div class="absolute bottom-4 right-4 w-10 h-10 rounded-full bg-white/90 backdrop-blur-md text-navy-dark flex items-center justify-center shadow-md group-hover:bg-accent group-hover:text-white transition-all">
+    <div class="absolute bottom-3 right-3 sm:bottom-4 sm:right-4 w-10 h-10 rounded-full bg-white/90 backdrop-blur-md text-navy-dark flex items-center justify-center shadow-md group-hover:bg-accent group-hover:text-white transition-all">
       <span class="material-symbols-outlined text-xl">arrow_forward</span>
     </div>
   </div>
-  <div class="p-6 sm:p-8 flex items-center justify-between gap-4 bg-white">
+  <div class="p-5 sm:p-8 flex items-center justify-between gap-4 bg-white">
     <div>
-      <div class="text-xs font-bold text-accent uppercase tracking-wider mb-1">Modern Architectural</div>
-      <h3 class="font-headline font-bold text-xl sm:text-2xl text-navy-dark group-hover:text-primary transition-colors">
+      <div class="text-[10px] sm:text-xs font-bold text-accent uppercase tracking-wider mb-1">Modern Architectural</div>
+      <h3 class="font-headline font-bold text-lg sm:text-2xl text-navy-dark group-hover:text-primary transition-colors leading-snug">
         Zero-Edge Cleanline with Dual Fire Bowls
       </h3>
     </div>
@@ -758,23 +824,23 @@
   </div>
 </a>
 
-<!-- Card 3: Camarillo (Col Span 5) -->
-<a href="#our-work" class="md:col-span-5 bg-white rounded-3xl overflow-hidden border border-gray-200 shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col justify-between group hover:-translate-y-1 block">
-  <div class="relative h-[300px] sm:h-[360px] w-full overflow-hidden bg-navy-dark">
+<!-- Card 3: Camarillo -->
+<a href="#our-work" class="md:col-span-5 bg-white rounded-2xl sm:rounded-3xl overflow-hidden border border-gray-200 shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col justify-between group hover:-translate-y-1 block">
+  <div class="relative h-[240px] sm:h-[360px] w-full overflow-hidden bg-navy-dark">
     <img alt="Camarillo Saved Structural Shell Remodel" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" src="https://aarongabriel29.github.io/Hansen-mock-up/images/images/o%20(2).jpg">
     <div class="absolute inset-0 bg-gradient-to-t from-navy-dark/85 via-transparent to-black/10"></div>
-    <div class="absolute top-4 left-4 flex items-center gap-2">
-      <span class="px-3 py-1 rounded-full text-xs font-headline font-bold uppercase tracking-wider bg-navy-dark/90 backdrop-blur-md text-white border border-white/20">Camarillo</span>
-      <span class="px-2.5 py-1 rounded-full text-[11px] font-semibold bg-white/90 backdrop-blur-md text-navy-deep">Resort Renovation</span>
+    <div class="absolute top-3 left-3 sm:top-4 sm:left-4 flex flex-wrap items-center gap-2">
+      <span class="px-3 py-1 rounded-full text-[10px] sm:text-xs font-headline font-bold uppercase tracking-wider bg-navy-dark/90 backdrop-blur-md text-white border border-white/20">Camarillo</span>
+      <span class="px-2.5 py-1 rounded-full text-[10px] sm:text-[11px] font-semibold bg-white/90 backdrop-blur-md text-navy-deep">Resort Renovation</span>
     </div>
-    <div class="absolute bottom-4 right-4 w-10 h-10 rounded-full bg-white/90 backdrop-blur-md text-navy-dark flex items-center justify-center shadow-md group-hover:bg-accent group-hover:text-white transition-all">
+    <div class="absolute bottom-3 right-3 sm:bottom-4 sm:right-4 w-10 h-10 rounded-full bg-white/90 backdrop-blur-md text-navy-dark flex items-center justify-center shadow-md group-hover:bg-accent group-hover:text-white transition-all">
       <span class="material-symbols-outlined text-xl">arrow_forward</span>
     </div>
   </div>
-  <div class="p-6 sm:p-8 flex items-center justify-between gap-4 bg-white">
+  <div class="p-5 sm:p-8 flex items-center justify-between gap-4 bg-white">
     <div>
-      <div class="text-xs font-bold text-primary uppercase tracking-wider mb-1">Engineered Rebuild</div>
-      <h3 class="font-headline font-bold text-xl sm:text-2xl text-navy-dark group-hover:text-primary transition-colors">
+      <div class="text-[10px] sm:text-xs font-bold text-primary uppercase tracking-wider mb-1">Engineered Rebuild</div>
+      <h3 class="font-headline font-bold text-lg sm:text-2xl text-navy-dark group-hover:text-primary transition-colors leading-snug">
         Saved Structural Shell with 7' Tanning Shelf
       </h3>
     </div>
@@ -785,23 +851,23 @@
   </div>
 </a>
 
-<!-- Card 4: Simi Valley (Col Span 7) -->
-<a href="#our-work" class="md:col-span-7 bg-white rounded-3xl overflow-hidden border border-gray-200 shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col justify-between group hover:-translate-y-1 block">
-  <div class="relative h-[300px] sm:h-[360px] w-full overflow-hidden bg-navy-dark">
+<!-- Card 4: Simi Valley -->
+<a href="#our-work" class="md:col-span-7 bg-white rounded-2xl sm:rounded-3xl overflow-hidden border border-gray-200 shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col justify-between group hover:-translate-y-1 block">
+  <div class="relative h-[240px] sm:h-[360px] w-full overflow-hidden bg-navy-dark">
     <img alt="Simi Valley Complete Backyard Family Haven" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" src="https://aarongabriel29.github.io/Hansen-mock-up/images/images/o%20(8).jpg">
     <div class="absolute inset-0 bg-gradient-to-t from-navy-dark/85 via-transparent to-black/10"></div>
-    <div class="absolute top-4 left-4 flex items-center gap-2">
-      <span class="px-3 py-1 rounded-full text-xs font-headline font-bold uppercase tracking-wider bg-navy-deep text-white border border-white/20">Simi Valley</span>
-      <span class="px-2.5 py-1 rounded-full text-[11px] font-semibold bg-white/90 backdrop-blur-md text-navy-deep">Complete Backyard</span>
+    <div class="absolute top-3 left-3 sm:top-4 sm:left-4 flex flex-wrap items-center gap-2">
+      <span class="px-3 py-1 rounded-full text-[10px] sm:text-xs font-headline font-bold uppercase tracking-wider bg-navy-deep text-white border border-white/20">Simi Valley</span>
+      <span class="px-2.5 py-1 rounded-full text-[10px] sm:text-[11px] font-semibold bg-white/90 backdrop-blur-md text-navy-deep">Complete Backyard</span>
     </div>
-    <div class="absolute bottom-4 right-4 w-10 h-10 rounded-full bg-white/90 backdrop-blur-md text-navy-dark flex items-center justify-center shadow-md group-hover:bg-accent group-hover:text-white transition-all">
+    <div class="absolute bottom-3 right-3 sm:bottom-4 sm:right-4 w-10 h-10 rounded-full bg-white/90 backdrop-blur-md text-navy-dark flex items-center justify-center shadow-md group-hover:bg-accent group-hover:text-white transition-all">
       <span class="material-symbols-outlined text-xl">arrow_forward</span>
     </div>
   </div>
-  <div class="p-6 sm:p-8 flex items-center justify-between gap-4 bg-white">
+  <div class="p-5 sm:p-8 flex items-center justify-between gap-4 bg-white">
     <div>
-      <div class="text-xs font-bold text-accent uppercase tracking-wider mb-1">Family Recreation</div>
-      <h3 class="font-headline font-bold text-xl sm:text-2xl text-navy-dark group-hover:text-primary transition-colors">
+      <div class="text-[10px] sm:text-xs font-bold text-accent uppercase tracking-wider mb-1">Family Recreation</div>
+      <h3 class="font-headline font-bold text-lg sm:text-2xl text-navy-dark group-hover:text-primary transition-colors leading-snug">
         Monolithic Family Haven with Hydrotherapy Spa
       </h3>
     </div>
@@ -812,28 +878,28 @@
   </div>
 </a></div>
 <!-- Homeowner Testimonials -->
-<div class="grid grid-cols-1 md:grid-cols-3 gap-8 3xl:gap-10">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 3xl:gap-10">
   <!-- Testimonial 1 -->
-  <div class="relative bg-white rounded-3xl p-8 sm:p-9 border border-gray-200/90 shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col justify-between group hover:-translate-y-1">
-    <div class="absolute -top-4 right-8 w-9 h-9 rounded-full bg-navy-dark text-white flex items-center justify-center shadow-md">
+  <div class="relative bg-white rounded-2xl sm:rounded-3xl p-6 sm:p-9 border border-gray-200/90 shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col justify-between group hover:-translate-y-1">
+    <div class="absolute -top-4 right-6 sm:right-8 w-9 h-9 rounded-full bg-navy-dark text-white flex items-center justify-center shadow-md">
       <span class="material-symbols-outlined text-lg leading-none">format_quote</span>
     </div>
     <div>
-      <div class="flex items-center gap-1 text-accent mb-5">
-        <span class="material-symbols-outlined text-xl">star</span>
-        <span class="material-symbols-outlined text-xl">star</span>
-        <span class="material-symbols-outlined text-xl">star</span>
-        <span class="material-symbols-outlined text-xl">star</span>
-        <span class="material-symbols-outlined text-xl">star</span>
-        <span class="ml-2 text-xs font-bold text-navy-dark uppercase tracking-wider bg-orange-50 px-2 py-0.5 rounded-full border border-orange-100">5.0 Verified</span>
+      <div class="flex flex-wrap items-center gap-1 text-accent mb-4 sm:mb-5">
+        <span class="material-symbols-outlined text-lg sm:text-xl">star</span>
+        <span class="material-symbols-outlined text-lg sm:text-xl">star</span>
+        <span class="material-symbols-outlined text-lg sm:text-xl">star</span>
+        <span class="material-symbols-outlined text-lg sm:text-xl">star</span>
+        <span class="material-symbols-outlined text-lg sm:text-xl">star</span>
+        <span class="ml-1 sm:ml-2 text-[10px] sm:text-xs font-bold text-navy-dark uppercase tracking-wider bg-orange-50 px-2 py-0.5 rounded-full border border-orange-100">5.0 Verified</span>
       </div>
-      <p class="font-headline text-lg sm:text-xl text-navy-dark font-bold leading-snug tracking-tight mb-6">
+      <p class="font-headline text-base sm:text-xl text-navy-dark font-bold leading-snug tracking-tight mb-5 sm:mb-6">
         “Their team has been nothing but professional through this whole process. I would highly recommend them to anyone in Moorpark.”
       </p>
     </div>
-    <div class="pt-5 border-t border-gray-100 flex items-center justify-between mt-auto">
+    <div class="pt-5 border-t border-gray-100 flex flex-wrap items-center justify-between gap-3 mt-auto">
       <div class="flex items-center gap-3">
-        <div class="w-10 h-10 rounded-full bg-stone-bg flex items-center justify-center font-headline font-bold text-navy-deep text-sm border border-gray-200">
+        <div class="w-10 h-10 rounded-full bg-stone-bg flex items-center justify-center font-headline font-bold text-navy-deep text-sm border border-gray-200 shrink-0">
           JB
         </div>
         <div>
@@ -849,26 +915,26 @@
   </div>
 
   <!-- Testimonial 2 -->
-  <div class="relative bg-white rounded-3xl p-8 sm:p-9 border-2 border-primary/20 shadow-xl hover:shadow-2xl transition-all duration-300 flex flex-col justify-between group hover:-translate-y-1 ring-1 ring-primary/10">
-    <div class="absolute -top-4 right-8 w-9 h-9 rounded-full bg-accent text-white flex items-center justify-center shadow-md">
+  <div class="relative bg-white rounded-2xl sm:rounded-3xl p-6 sm:p-9 border-2 border-primary/20 shadow-xl hover:shadow-2xl transition-all duration-300 flex flex-col justify-between group hover:-translate-y-1 ring-1 ring-primary/10">
+    <div class="absolute -top-4 right-6 sm:right-8 w-9 h-9 rounded-full bg-accent text-white flex items-center justify-center shadow-md">
       <span class="material-symbols-outlined text-lg leading-none">format_quote</span>
     </div>
     <div>
-      <div class="flex items-center gap-1 text-accent mb-5">
-        <span class="material-symbols-outlined text-xl">star</span>
-        <span class="material-symbols-outlined text-xl">star</span>
-        <span class="material-symbols-outlined text-xl">star</span>
-        <span class="material-symbols-outlined text-xl">star</span>
-        <span class="material-symbols-outlined text-xl">star</span>
-        <span class="ml-2 text-xs font-bold text-navy-dark uppercase tracking-wider bg-orange-50 px-2 py-0.5 rounded-full border border-orange-100">5.0 Verified</span>
+      <div class="flex flex-wrap items-center gap-1 text-accent mb-4 sm:mb-5">
+        <span class="material-symbols-outlined text-lg sm:text-xl">star</span>
+        <span class="material-symbols-outlined text-lg sm:text-xl">star</span>
+        <span class="material-symbols-outlined text-lg sm:text-xl">star</span>
+        <span class="material-symbols-outlined text-lg sm:text-xl">star</span>
+        <span class="material-symbols-outlined text-lg sm:text-xl">star</span>
+        <span class="ml-1 sm:ml-2 text-[10px] sm:text-xs font-bold text-navy-dark uppercase tracking-wider bg-orange-50 px-2 py-0.5 rounded-full border border-orange-100">5.0 Verified</span>
       </div>
-      <p class="font-headline text-lg sm:text-xl text-navy-dark font-bold leading-snug tracking-tight mb-6">
+      <p class="font-headline text-base sm:text-xl text-navy-dark font-bold leading-snug tracking-tight mb-5 sm:mb-6">
         “The owner is honest and I cannot begin to tell you how positive my experience was. Great company that stands behind their work.”
       </p>
     </div>
-    <div class="pt-5 border-t border-gray-100 flex items-center justify-between mt-auto">
+    <div class="pt-5 border-t border-gray-100 flex flex-wrap items-center justify-between gap-3 mt-auto">
       <div class="flex items-center gap-3">
-        <div class="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center font-headline font-bold text-primary text-sm border border-blue-100">
+        <div class="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center font-headline font-bold text-primary text-sm border border-blue-100 shrink-0">
           JP
         </div>
         <div>
@@ -884,26 +950,26 @@
   </div>
 
   <!-- Testimonial 3 -->
-  <div class="relative bg-white rounded-3xl p-8 sm:p-9 border border-gray-200/90 shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col justify-between group hover:-translate-y-1">
-    <div class="absolute -top-4 right-8 w-9 h-9 rounded-full bg-navy-dark text-white flex items-center justify-center shadow-md">
+  <div class="relative bg-white rounded-2xl sm:rounded-3xl p-6 sm:p-9 border border-gray-200/90 shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col justify-between group hover:-translate-y-1">
+    <div class="absolute -top-4 right-6 sm:right-8 w-9 h-9 rounded-full bg-navy-dark text-white flex items-center justify-center shadow-md">
       <span class="material-symbols-outlined text-lg leading-none">format_quote</span>
     </div>
     <div>
-      <div class="flex items-center gap-1 text-accent mb-5">
-        <span class="material-symbols-outlined text-xl">star</span>
-        <span class="material-symbols-outlined text-xl">star</span>
-        <span class="material-symbols-outlined text-xl">star</span>
-        <span class="material-symbols-outlined text-xl">star</span>
-        <span class="material-symbols-outlined text-xl">star</span>
-        <span class="ml-2 text-xs font-bold text-navy-dark uppercase tracking-wider bg-orange-50 px-2 py-0.5 rounded-full border border-orange-100">5.0 Verified</span>
+      <div class="flex flex-wrap items-center gap-1 text-accent mb-4 sm:mb-5">
+        <span class="material-symbols-outlined text-lg sm:text-xl">star</span>
+        <span class="material-symbols-outlined text-lg sm:text-xl">star</span>
+        <span class="material-symbols-outlined text-lg sm:text-xl">star</span>
+        <span class="material-symbols-outlined text-lg sm:text-xl">star</span>
+        <span class="material-symbols-outlined text-lg sm:text-xl">star</span>
+        <span class="ml-1 sm:ml-2 text-[10px] sm:text-xs font-bold text-navy-dark uppercase tracking-wider bg-orange-50 px-2 py-0.5 rounded-full border border-orange-100">5.0 Verified</span>
       </div>
-      <p class="font-headline text-lg sm:text-xl text-navy-dark font-bold leading-snug tracking-tight mb-6">
+      <p class="font-headline text-base sm:text-xl text-navy-dark font-bold leading-snug tracking-tight mb-5 sm:mb-6">
         “Hansen Waterscapes has changed our backyard completely. Our family is truly impressed by the shotcrete craftsmanship.”
       </p>
     </div>
-    <div class="pt-5 border-t border-gray-100 flex items-center justify-between mt-auto">
+    <div class="pt-5 border-t border-gray-100 flex flex-wrap items-center justify-between gap-3 mt-auto">
       <div class="flex items-center gap-3">
-        <div class="w-10 h-10 rounded-full bg-stone-bg flex items-center justify-center font-headline font-bold text-navy-deep text-sm border border-gray-200">
+        <div class="w-10 h-10 rounded-full bg-stone-bg flex items-center justify-center font-headline font-bold text-navy-deep text-sm border border-gray-200 shrink-0">
           AK
         </div>
         <div>
@@ -921,23 +987,21 @@
 </div>
 </section>
 <!-- SECTION 7: CONSULTATION & LEAD CAPTURE -->
-<section class="py-24 sm:py-28 3xl:py-32 bg-stone-bg" id="consultation"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 2xl:px-10 3xl:px-12"><div class="bg-white rounded-3xl p-8 sm:p-14 3xl:p-16 border border-gray-200/90 shadow-xl relative overflow-hidden"><div class="absolute -top-24 -right-24 w-96 h-96 bg-primary/5 rounded-full blur-3xl pointer-events-none"></div><div class="grid grid-cols-1 lg:grid-cols-12 gap-10 3xl:gap-16 items-center relative z-20"><div class="lg:col-span-5"><div class="inline-flex items-center gap-2 text-primary font-headline font-bold text-xs uppercase tracking-wider mb-3"><span class="material-symbols-outlined text-base text-accent">support_agent</span><span class="">Direct Builder Consultation</span></div><h2 class="font-headline text-3xl sm:text-4xl 3xl:text-5xl font-extrabold text-navy-dark tracking-tight mb-4 leading-tight">Let's Discuss Your Backyard.</h2><p class="text-sm sm:text-base text-body-slate leading-relaxed mb-6">No salespeople will call you. You speak directly with the Hansen family to confirm site topography, timeline, and standard package feasibility.</p><div class="p-5 rounded-2xl bg-stone-bg border border-gray-200 shadow-2xs mb-6"><span class="block text-xs font-bold uppercase tracking-wider text-gray-500 mb-1">Direct Builder Phone</span><a class="font-headline text-2xl sm:text-3xl font-extrabold text-navy-deep hover:text-accent transition-colors flex items-center gap-2" href="tel:805-217-2246"><span class="material-symbols-outlined text-2xl text-accent">call</span>805-217-2246</a></div><div class="space-y-2 text-xs text-body-slate pt-2 border-t border-gray-100"><div class="flex items-center gap-2 text-slate-ink font-semibold"><span class="material-symbols-outlined text-base text-emerald-600">verified</span><span class="">Serving Ventura County &amp; Surrounding Areas</span></div><p class="text-gray-500"><strong>License:</strong> California C-53 #958067</p><p class="text-gray-500"><strong>Office:</strong> 530 W Los Angeles Ave #115-305, Moorpark, CA</p></div></div><div class="lg:col-span-7 bg-stone-bg/60 p-6 sm:p-8 rounded-2xl border border-gray-200/80 shadow-xs"><form class="space-y-4" onsubmit="event.preventDefault(); alert('Thank you! The Hansen family has received your request and will follow up shortly.');"><div class="grid grid-cols-1 sm:grid-cols-2 gap-4"><div><label class="block text-xs font-bold uppercase tracking-wider text-navy-dark mb-1">Your Name</label><input class="w-full px-4 py-3 rounded-xl border border-gray-300 text-sm focus:ring-2 focus:ring-primary focus:border-primary outline-none bg-white" placeholder="John &amp; Sarah Miller" required="" type="text"></div><div><label class="block text-xs font-bold uppercase tracking-wider text-navy-dark mb-1">Phone Number</label><input class="w-full px-4 py-3 rounded-xl border border-gray-300 text-sm focus:ring-2 focus:ring-primary focus:border-primary outline-none bg-white" placeholder="(805) 555-0192" required="" type="tel"></div></div><div class="grid grid-cols-1 sm:grid-cols-2 gap-4"><div><label class="block text-xs font-bold uppercase tracking-wider text-navy-dark mb-1">Email Address</label><input class="w-full px-4 py-3 rounded-xl border border-gray-300 text-sm focus:ring-2 focus:ring-primary focus:border-primary outline-none bg-white" placeholder="name@domain.com" required="" type="email"></div><div><label class="block text-xs font-bold uppercase tracking-wider text-navy-dark mb-1">City / ZIP Code</label><input class="w-full px-4 py-3 rounded-xl border border-gray-300 text-sm focus:ring-2 focus:ring-primary focus:border-primary outline-none bg-white" placeholder="Moorpark, 93021" required="" type="text"></div></div><div><label class="block text-xs font-bold uppercase tracking-wider text-navy-dark mb-1">Preferred Package or Scope</label><select class="w-full px-4 py-3 rounded-xl border border-gray-300 text-sm focus:ring-2 focus:ring-primary focus:border-primary outline-none bg-white"><option>Tier 01: Compact In-Ground (12' × 24') - $69,995</option><option selected="">Tier 02: Classic Family (14' × 28') - $79,995</option><option>Tier 03: Family &amp; Entertainer (16' × 32') - $94,995</option><option>Tier 04: Estate Grand (18' × 36') - $124,995</option><option>Custom Architectural Layout / Sloped Lot</option><option>Existing Pool Remodel &amp; Equipment Overhaul</option></select></div><div><label class="block text-xs font-bold uppercase tracking-wider text-navy-dark mb-1">Property Notes (Slope, Gate Access, Vision)</label><textarea class="w-full px-4 py-3 rounded-xl border border-gray-300 text-sm focus:ring-2 focus:ring-primary focus:border-primary outline-none resize-none bg-white" placeholder="Describe your yard layout, access width, or preferred timeline." rows="3"></textarea></div><button class="w-full py-4 px-6 rounded-xl font-headline font-bold text-base bg-accent hover:bg-accent-hover text-white shadow-md hover:shadow-lg transition-all cursor-pointer" type="submit">Schedule Free 15-Minute Backyard Review</button><p class="text-center text-[11px] text-gray-500">Strictly confidential. No automated robocalls. Family owned in Moorpark.</p></form></div></div></div></div></section>
-<!-- SECTION 8: SERVICE AREAS -->
-
+<section class="py-14 sm:py-24 3xl:py-32 bg-stone-bg" id="consultation"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 2xl:px-10 3xl:px-12"><div class="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-10 lg:p-14 3xl:p-16 border border-gray-200/90 shadow-xl relative overflow-hidden"><div class="absolute -top-24 -right-24 w-96 h-96 bg-primary/5 rounded-full blur-3xl pointer-events-none"></div><div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 3xl:gap-16 items-center relative z-20"><div class="lg:col-span-5"><div class="inline-flex items-center gap-2 text-primary font-headline font-bold text-[10px] sm:text-xs uppercase tracking-wider mb-3"><span class="material-symbols-outlined text-base text-accent">support_agent</span><span class="">Direct Builder Consultation</span></div><h2 class="font-headline text-[26px] sm:text-4xl 3xl:text-5xl font-extrabold text-navy-dark tracking-tight mb-4 leading-tight">Let's Discuss Your Backyard.</h2><p class="text-[14px] sm:text-base text-body-slate leading-relaxed mb-6">No salespeople will call you. You speak directly with the Hansen family to confirm site topography, timeline, and standard package feasibility.</p><div class="p-4 sm:p-5 rounded-2xl bg-stone-bg border border-gray-200 shadow-2xs mb-6"><span class="block text-[10px] sm:text-xs font-bold uppercase tracking-wider text-gray-500 mb-1">Direct Builder Phone</span><a class="font-headline text-2xl sm:text-3xl font-extrabold text-navy-deep hover:text-accent transition-colors flex items-center gap-2" href="tel:805-217-2246"><span class="material-symbols-outlined text-2xl text-accent">call</span>805-217-2246</a></div><div class="space-y-2 text-[11px] sm:text-xs text-body-slate pt-2 border-t border-gray-100"><div class="flex items-center gap-2 text-slate-ink font-semibold"><span class="material-symbols-outlined text-base text-emerald-600 shrink-0">verified</span><span class="">Serving Ventura County &amp; Surrounding Areas</span></div><p class="text-gray-500"><strong>License:</strong> California C-53 #958067</p><p class="text-gray-500"><strong>Office:</strong> 530 W Los Angeles Ave #115-305, Moorpark, CA</p></div></div><div class="lg:col-span-7 bg-stone-bg/60 p-4 sm:p-8 rounded-2xl border border-gray-200/80 shadow-xs"><form class="space-y-4" onsubmit="event.preventDefault(); alert('Thank you! The Hansen family has received your request and will follow up shortly.');"><div class="grid grid-cols-1 sm:grid-cols-2 gap-4"><div><label class="block text-[10px] sm:text-xs font-bold uppercase tracking-wider text-navy-dark mb-1" for="c-name">Your Name</label><input autocomplete="name" class="w-full px-4 py-3 rounded-xl border border-gray-300 text-base sm:text-sm focus:ring-2 focus:ring-primary focus:border-primary outline-none bg-white" id="c-name" name="name" placeholder="John &amp; Sarah Miller" required="" type="text"></div><div><label class="block text-[10px] sm:text-xs font-bold uppercase tracking-wider text-navy-dark mb-1" for="c-phone">Phone Number</label><input autocomplete="tel" class="w-full px-4 py-3 rounded-xl border border-gray-300 text-base sm:text-sm focus:ring-2 focus:ring-primary focus:border-primary outline-none bg-white" id="c-phone" inputmode="tel" name="phone" placeholder="(805) 555-0192" required="" type="tel"></div></div><div class="grid grid-cols-1 sm:grid-cols-2 gap-4"><div><label class="block text-[10px] sm:text-xs font-bold uppercase tracking-wider text-navy-dark mb-1" for="c-email">Email Address</label><input autocomplete="email" class="w-full px-4 py-3 rounded-xl border border-gray-300 text-base sm:text-sm focus:ring-2 focus:ring-primary focus:border-primary outline-none bg-white" id="c-email" inputmode="email" name="email" placeholder="name@domain.com" required="" type="email"></div><div><label class="block text-[10px] sm:text-xs font-bold uppercase tracking-wider text-navy-dark mb-1" for="c-zip">City / ZIP Code</label><input autocomplete="postal-code" class="w-full px-4 py-3 rounded-xl border border-gray-300 text-base sm:text-sm focus:ring-2 focus:ring-primary focus:border-primary outline-none bg-white" id="c-zip" name="zip" placeholder="Moorpark, 93021" required="" type="text"></div></div><div><label class="block text-[10px] sm:text-xs font-bold uppercase tracking-wider text-navy-dark mb-1" for="c-package">Preferred Package or Scope</label><select class="w-full px-4 py-3 rounded-xl border border-gray-300 text-base sm:text-sm focus:ring-2 focus:ring-primary focus:border-primary outline-none bg-white" id="c-package" name="package"><option>Tier 01: Compact In-Ground (12' × 24') - $69,995</option><option selected="">Tier 02: Classic Family (14' × 28') - $79,995</option><option>Tier 03: Family &amp; Entertainer (16' × 32') - $94,995</option><option>Tier 04: Estate Grand (18' × 36') - $124,995</option><option>Custom Architectural Layout / Sloped Lot</option><option>Existing Pool Remodel &amp; Equipment Overhaul</option></select></div><div><label class="block text-[10px] sm:text-xs font-bold uppercase tracking-wider text-navy-dark mb-1" for="c-notes">Property Notes (Slope, Gate Access, Vision)</label><textarea class="w-full px-4 py-3 rounded-xl border border-gray-300 text-base sm:text-sm focus:ring-2 focus:ring-primary focus:border-primary outline-none resize-none bg-white" id="c-notes" name="notes" placeholder="Describe your yard layout, access width, or preferred timeline." rows="3"></textarea></div><button class="w-full py-4 px-4 sm:px-6 rounded-xl font-headline font-bold text-[15px] sm:text-base bg-accent hover:bg-accent-hover text-white shadow-md hover:shadow-lg transition-all cursor-pointer" type="submit">Schedule Free 15-Minute Backyard Review</button><p class="text-center text-[11px] text-gray-500">Strictly confidential. No automated robocalls. Family owned in Moorpark.</p></form></div></div></div></div></section>
 </main>
 <!-- FOOTER -->
-<footer class="bg-navy-dark border-t border-white/10 py-16 3xl:py-20 text-gray-300 text-sm">
+<footer class="bg-navy-dark border-t border-white/10 py-12 sm:py-16 3xl:py-20 text-gray-300 text-sm">
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 2xl:px-10 3xl:px-12">
-<div class="grid grid-cols-1 md:grid-cols-12 gap-10 3xl:gap-16 mb-12">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-8 sm:gap-10 3xl:gap-16 mb-10 sm:mb-12">
 <!-- Logo & Brand Col -->
 <div class="md:col-span-5 space-y-4">
 <div class="bg-white inline-block p-2 rounded-xl">
-<img alt="Hansen Waterscapes Inc. Logo" class="h-12 w-auto object-contain" src="https://aarongabriel29.github.io/Hansen-mock-up/images/images/12948412_logo.webp">
+<img alt="Hansen Waterscapes Inc. Logo" class="h-10 sm:h-12 w-auto object-contain" src="https://aarongabriel29.github.io/Hansen-mock-up/images/images/12948412_logo.webp">
 </div>
-<p class="text-xs sm:text-sm text-gray-300 max-w-sm leading-relaxed">
+<p class="text-[13px] sm:text-sm text-gray-300 max-w-sm leading-relaxed">
           Family owned and operated custom swimming pool and spa contractor based in Moorpark, California. Four decades of monolithic shotcrete engineering.
         </p>
-<div class="text-xs text-gray-400 font-medium space-y-1">
+<div class="text-[11px] sm:text-xs text-gray-400 font-medium space-y-1">
 <p class="">California State License #958067</p>
 <p class="">530 W Los Angeles Ave #115-305, Moorpark, CA 93021</p>
 <p class="mt-1"><a class="text-accent font-bold hover:underline" href="tel:805-217-2246">805-217-2246</a></p>
@@ -946,7 +1010,7 @@
 <!-- Links Col -->
 <div class="md:col-span-3 space-y-2">
 <h4 class="font-headline font-bold text-xs uppercase tracking-wider text-white mb-3">Explore</h4>
-<ul class="space-y-2 text-xs font-medium text-gray-300">
+<ul class="space-y-2.5 text-[13px] sm:text-xs font-medium text-gray-300">
 <li class=""><a class="hover:text-accent transition-colors" href="#models-pricing">Pool Models &amp; Pricing</a></li>
 <li class=""><a class="hover:text-accent transition-colors" href="#inclusions">Standard Inclusions Comparison</a></li>
 <li class=""><a class="hover:text-accent transition-colors" href="#our-work">Selected Case Studies</a></li>
@@ -957,57 +1021,81 @@
 <!-- In-House Assurance -->
 <div class="md:col-span-4 space-y-3">
 <h4 class="font-headline font-bold text-xs uppercase tracking-wider text-white mb-3">Builder Assurance</h4>
-<div class="p-4 rounded-xl bg-white/5 border border-white/10 text-xs text-gray-300 leading-relaxed">
+<div class="p-4 rounded-xl bg-white/5 border border-white/10 text-[11px] sm:text-xs text-gray-300 leading-relaxed">
 <strong class="text-white font-semibold block mb-1">Lifetime Structural Shell Guarantee</strong>
           Every shotcrete shell is constructed with 4,500 PSI pneumatic concrete mix, high-grade reinforcement steel, and certified local soil inspections.
         </div>
 </div>
 </div>
-<div class="pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-400 gap-4">
+<div class="pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between text-[11px] sm:text-xs text-gray-400 gap-3 text-center sm:text-left">
 <p class="">© 2025 Hansen Waterscapes Inc. All rights reserved. Monolithic pool craftsmanship in Ventura County.</p>
 <p class="font-medium text-gray-300">California Contractor License #958067</p>
 </div>
 </div>
 </footer>
-<!-- MODUL POOLS HORIZONTAL CAROUSEL SCRIPT -->
+<!-- STICKY MOBILE ACTION BAR -->
+<div class="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t border-gray-200 px-3 pt-2.5 safe-bottom flex items-center gap-2.5 shadow-[0_-4px_16px_rgba(0,0,0,0.06)]">
+<a class="flex-1 inline-flex items-center justify-center gap-2 py-3 rounded-xl bg-stone-bg border border-gray-200 text-navy-deep font-headline font-bold text-sm transition-colors" href="tel:805-217-2246">
+<span class="material-symbols-outlined text-[18px] text-accent">call</span>Call Builder
+  </a>
+<a class="flex-1 inline-flex items-center justify-center py-3 rounded-xl bg-accent hover:bg-accent-hover text-white font-headline font-bold text-sm shadow-md transition-colors" href="#consultation">
+    Request Estimate
+  </a>
+</div>
+<!-- MOBILE NAV + HORIZONTAL CAROUSEL SCRIPT -->
 <script>
   document.addEventListener('DOMContentLoaded', () => {
+    /* ---------- Mobile navigation ---------- */
+    const menuBtn = document.getElementById('mobile-menu-btn');
+    const menu = document.getElementById('mobile-menu');
+    const menuIcon = document.getElementById('mobile-menu-icon');
+
+    if (menuBtn && menu && menuIcon) {
+      const setMenu = (open) => {
+        menu.classList.toggle('hidden', !open);
+        menuBtn.setAttribute('aria-expanded', String(open));
+        menuBtn.setAttribute('aria-label', open ? 'Close navigation menu' : 'Open navigation menu');
+        menuIcon.textContent = open ? 'close' : 'menu';
+      };
+
+      menuBtn.addEventListener('click', () => setMenu(menu.classList.contains('hidden')));
+      menu.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => setMenu(false)));
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setMenu(false); });
+      window.addEventListener('resize', () => { if (window.innerWidth >= 1024) setMenu(false); });
+    }
+
+    /* ---------- Pricing carousel ---------- */
     const track = document.getElementById('modul-pricing-track');
     const prevBtn = document.getElementById('h-prev');
     const nextBtn = document.getElementById('h-next');
     const dots = document.querySelectorAll('#modul-dots span');
 
-    if (track && prevBtn && nextBtn) {
+    if (track) {
       const scrollStep = () => {
         const card = track.querySelector(':scope > div');
-        if (!card) return 540;
-        const gap = parseFloat(getComputedStyle(track).columnGap) || 24;
+        if (!card) return track.clientWidth * 0.9;
+        const styles = getComputedStyle(track);
+        const gap = parseFloat(styles.columnGap || styles.gap) || 16;
         return card.getBoundingClientRect().width + gap;
       };
 
-      prevBtn.addEventListener('click', () => {
-        track.scrollBy({ left: -scrollStep(), behavior: 'smooth' });
-      });
+      if (prevBtn) prevBtn.addEventListener('click', () => track.scrollBy({ left: -scrollStep(), behavior: 'smooth' }));
+      if (nextBtn) nextBtn.addEventListener('click', () => track.scrollBy({ left: scrollStep(), behavior: 'smooth' }));
 
-      nextBtn.addEventListener('click', () => {
-        track.scrollBy({ left: scrollStep(), behavior: 'smooth' });
-      });
-
-      track.addEventListener('scroll', () => {
+      const syncDots = () => {
+        if (!dots.length) return;
         const index = Math.min(dots.length - 1, Math.round(track.scrollLeft / scrollStep()));
         dots.forEach((dot, i) => {
-          if (i === index) {
-            dot.className = 'w-8 h-2 rounded-full bg-navy-dark transition-all duration-300';
-          } else {
-            dot.className = 'w-2 h-2 rounded-full bg-gray-300 transition-all duration-300';
-          }
+          dot.className = (i === index)
+            ? 'w-8 h-2 rounded-full bg-navy-dark transition-all duration-300'
+            : 'w-2 h-2 rounded-full bg-gray-300 transition-all duration-300';
         });
-      });
+      };
+
+      track.addEventListener('scroll', syncDots, { passive: true });
+      window.addEventListener('resize', syncDots);
+      syncDots();
     }
   });
 </script>
-
-
-
-
 </body></html>
