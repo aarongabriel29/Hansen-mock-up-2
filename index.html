@@ -6,6 +6,14 @@
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Microsoft Clarity: session replays, heatmaps, scroll depth -->
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "ylulgcd9xg");
+</script>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <script id="tailwind-config">
     tailwind.config = {
@@ -1097,5 +1105,43 @@
       syncDots();
     }
   });
+</script>
+<!-- ============================================================
+     INSTANT OPEN ALERT
+     Paste your Google Apps Script /exec URL into ENDPOINT below.
+     Until you do, this block does nothing at all.
+     ============================================================ -->
+<script>
+(function () {
+  var ENDPOINT = "https://script.google.com/macros/s/AKfycbyuSNmH_ALX-P-DMFKVWUyxz8IYGsW-ml41uiWYguBPTmAYs8StxtEBW-_gHuFxcmDz/exec";
+  var PAGE_LABEL = "v2";
+  if (ENDPOINT.indexOf("http") !== 0) return;
+
+  var stamp = "hansen_ping_" + PAGE_LABEL + "_" + new Date().toISOString().slice(0, 10);
+  try { if (localStorage.getItem(stamp)) return; localStorage.setItem(stamp, "1"); } catch (e) {}
+
+  var params = new URLSearchParams(location.search);
+  var payload = {
+    page: PAGE_LABEL,
+    visitor: params.get("v") || "unknown",
+    referrer: document.referrer || "direct",
+    screen: window.innerWidth + "x" + window.innerHeight,
+    device: /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent) ? "mobile" : "desktop",
+    agent: navigator.userAgent,
+    time: new Date().toISOString()
+  };
+
+  var send = function (extra) {
+    fetch(ENDPOINT, {
+      method: "POST",
+      mode: "no-cors",
+      headers: { "Content-Type": "text/plain;charset=utf-8" },
+      body: JSON.stringify(Object.assign({}, payload, extra || {}))
+    }).catch(function () {});
+  };
+
+  send();
+  setTimeout(function () { send({ event: "engaged_30s" }); }, 30000);
+})();
 </script>
 </body></html>
